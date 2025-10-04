@@ -1,9 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Sparkles } from 'lucide-react';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [cursorDistance, setCursorDistance] = useState(1000);
+  const orbRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (orbRef.current) {
+        const rect = orbRef.current.getBoundingClientRect();
+        const orbCenterX = rect.left + rect.width / 2;
+        const orbCenterY = rect.top + rect.height / 2;
+        const distance = Math.sqrt(
+          Math.pow(e.clientX - orbCenterX, 2) + Math.pow(e.clientY - orbCenterY, 2)
+        );
+        setCursorDistance(distance);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const conversation = [
     {
@@ -38,20 +57,38 @@ const ChatWidget = () => {
 
   const displayedMessages = conversation.slice(0, currentStep + 1);
 
+  const isNearCursor = cursorDistance < 200;
+  const proximityScale = isNearCursor ? 1 + (200 - cursorDistance) / 200 * 0.15 : 1;
+  const glowIntensity = isNearCursor ? Math.min((200 - cursorDistance) / 100, 1) : 0.3;
+
   return (
     <>
       <button
+        ref={orbRef}
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-2xl transition-all duration-500 flex items-center justify-center ${
+        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full transition-all duration-300 flex items-center justify-center ${
           isOpen
             ? 'glass-strong hover:scale-105 neon-glow rotate-90'
-            : 'bg-gradient-to-br from-violet-500 via-violet-600 to-blue-500 hover:scale-110 neon-glow animate-glow-pulse'
+            : 'bg-gradient-to-br from-violet-500 via-violet-600 to-blue-500'
         }`}
+        style={{
+          transform: isOpen ? 'rotate(90deg)' : `scale(${proximityScale})`,
+          boxShadow: isOpen
+            ? '0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1)'
+            : `0 0 ${20 + glowIntensity * 40}px rgba(139, 92, 246, ${0.4 + glowIntensity * 0.4}),
+               0 0 ${40 + glowIntensity * 60}px rgba(59, 130, 246, ${0.2 + glowIntensity * 0.3}),
+               inset 0 0 ${10 + glowIntensity * 20}px rgba(255, 255, 255, ${0.1 + glowIntensity * 0.2})`,
+        }}
       >
         {isOpen ? (
           <X className="w-6 h-6 text-gray-900 transition-transform duration-300" />
         ) : (
-          <MessageCircle className="w-6 h-6 text-white transition-transform duration-300" />
+          <>
+            <MessageCircle className="w-6 h-6 text-white transition-transform duration-300" />
+            {isNearCursor && (
+              <div className="absolute inset-0 rounded-full bg-white/20 animate-ping"></div>
+            )}
+          </>
         )}
       </button>
 
