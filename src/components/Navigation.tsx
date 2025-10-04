@@ -32,15 +32,9 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-2 group cursor-pointer">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden neon-glow transition-all duration-300 group-hover:scale-110">
-              <img
-                src="/Screenshot 2025-10-04 at 6.06.43 PM.png"
-                alt="LuminAI"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <span className="text-3xl transition-all duration-300 group-hover:scale-110">🔮</span>
             <span className="text-xl font-semibold bg-gradient-to-r from-gray-900 via-violet-900 to-gray-900 bg-clip-text text-transparent">
-              uminAI
+              Lumin AI
             </span>
           </div>
 
