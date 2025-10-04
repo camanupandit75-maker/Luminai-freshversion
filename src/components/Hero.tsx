@@ -2,6 +2,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { useEffect, useState } from 'react';
+import AnimatedTagline from './AnimatedTagline';
 
 const Hero = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.2 });
@@ -29,7 +30,7 @@ const Hero = () => {
           <span className="text-sm font-semibold text-violet-700">AI-Powered Knowledge Base</span>
         </div>
 
-        <h1 className={`text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight gradient-shadow transition-all duration-700 delay-100 ${
+        <h1 className={`text-4xl lg:text-6xl font-bold text-gray-900 mb-3 leading-tight gradient-shadow transition-all duration-700 delay-100 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           Find Critical R&D Answers
@@ -39,6 +40,12 @@ const Hero = () => {
             <span className="inline-block w-0.5 h-8 lg:h-14 bg-violet-500 ml-1 animate-pulse align-middle"></span>
           </span>
         </h1>
+
+        <div className={`mb-6 transition-all duration-700 delay-200 ${
+          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <AnimatedTagline />
+        </div>
 
         <p className={`text-lg lg:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-300 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
