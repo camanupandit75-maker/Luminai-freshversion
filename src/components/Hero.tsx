@@ -1,24 +1,9 @@
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { useTypewriter } from '../hooks/useTypewriter';
-import { useEffect, useState } from 'react';
 import AnimatedTagline from './AnimatedTagline';
 
 const Hero = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.2 });
-  const [startTypewriter, setStartTypewriter] = useState(false);
-
-  const typewriterText = "Buried in Chats — Instantly.";
-  const { displayedText } = useTypewriter(typewriterText, {
-    speed: 80,
-    delay: 1000,
-    startOnMount: startTypewriter,
-  });
-
-  useEffect(() => {
-    const timer = setTimeout(() => setStartTypewriter(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-6 lg:px-8 neural-pattern relative">
@@ -30,18 +15,13 @@ const Hero = () => {
           <span className="text-sm font-semibold text-violet-700">AI-Powered Knowledge Base</span>
         </div>
 
-        <h1 className={`text-4xl lg:text-6xl font-bold text-gray-900 mb-3 leading-tight gradient-shadow transition-all duration-700 delay-100 ${
+        <h1 className={`text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight gradient-shadow transition-all duration-700 delay-100 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          Find Critical R&D Answers
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 via-purple-500 to-blue-500 animate-glow-pulse">
-            {displayedText}
-            <span className="inline-block w-0.5 h-8 lg:h-14 bg-violet-500 ml-1 animate-pulse align-middle"></span>
-          </span>
+          AI That Remembers What Your Team Forgets.
         </h1>
 
-        <div className={`mb-6 transition-all duration-700 delay-200 ${
+        <div className={`mb-10 transition-all duration-700 delay-200 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <AnimatedTagline />
