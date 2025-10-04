@@ -1,6 +1,9 @@
 import { BotMessageSquare, Eye, Zap } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const HowItWorks = () => {
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal({ threshold: 0.1 });
+
   const steps = [
     {
       number: '01',
@@ -23,9 +26,11 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28 px-6 lg:px-8 neural-pattern relative overflow-hidden">
+    <section ref={sectionRef} id="how-it-works" className="py-20 lg:py-28 px-6 lg:px-8 neural-pattern relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-700 ${
+          sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 gradient-shadow">
             How It Works
           </h2>
@@ -38,9 +43,12 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="relative group"
+              className={`relative group transition-all duration-700 ${
+                sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}
+              style={{ transitionDelay: `${index * 150 + 300}ms` }}
             >
-              <div className="glass-strong rounded-2xl p-8 h-full transition-all duration-500 hover:scale-105 neon-glow-blue hover:neon-glow group-hover:glass">
+              <div className="glass-strong rounded-2xl p-8 h-full transition-all duration-500 hover:scale-105 hover:-translate-y-3 neon-glow-blue hover:neon-glow group-hover:glass">
                 <div className="mb-6 relative">
                   <span className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-violet-200 to-blue-200 group-hover:from-violet-300 group-hover:to-blue-300 transition-all duration-500">
                     {step.number}

@@ -61,18 +61,35 @@ const ChatWidget = () => {
   const proximityScale = isNearCursor ? 1 + (200 - cursorDistance) / 200 * 0.15 : 1;
   const glowIntensity = isNearCursor ? Math.min((200 - cursorDistance) / 100, 1) : 0.3;
 
+  // Breathing animation
+  const breathingScale = 1 + Math.sin(Date.now() * 0.001) * 0.05;
+
   return (
     <>
+      {/* Particle ring effect */}
+      {!isOpen && (
+        <>
+          <div className="fixed bottom-6 right-6 z-40 w-16 h-16 pointer-events-none">
+            <div className="absolute inset-0 rounded-full border-2 border-violet-400/30 animate-ping" style={{ animationDuration: '2s' }}></div>
+          </div>
+          <div className="fixed bottom-6 right-6 z-40 w-20 h-20 pointer-events-none">
+            <div className="absolute inset-0 rounded-full border border-blue-400/20 animate-ping" style={{ animationDuration: '3s', animationDelay: '0.5s' }}></div>
+          </div>
+        </>
+      )}
+
       <button
         ref={orbRef}
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full transition-all duration-300 flex items-center justify-center ${
+        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full transition-all duration-300 flex items-center justify-center overflow-hidden ${
           isOpen
             ? 'glass-strong hover:scale-105 neon-glow rotate-90'
             : 'bg-gradient-to-br from-violet-500 via-violet-600 to-blue-500'
         }`}
         style={{
-          transform: isOpen ? 'rotate(90deg)' : `scale(${proximityScale})`,
+          transform: isOpen
+            ? 'rotate(90deg)'
+            : `scale(${proximityScale * (isNearCursor ? 1 : breathingScale)})`,
           boxShadow: isOpen
             ? '0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1)'
             : `0 0 ${20 + glowIntensity * 40}px rgba(139, 92, 246, ${0.4 + glowIntensity * 0.4}),
@@ -84,10 +101,16 @@ const ChatWidget = () => {
           <X className="w-6 h-6 text-gray-900 transition-transform duration-300" />
         ) : (
           <>
-            <MessageCircle className="w-6 h-6 text-white transition-transform duration-300" />
+            <MessageCircle className="w-6 h-6 text-white transition-transform duration-300 relative z-10" />
             {isNearCursor && (
-              <div className="absolute inset-0 rounded-full bg-white/20 animate-ping"></div>
+              <>
+                <div className="absolute inset-0 rounded-full bg-white/20 animate-ping"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent"></div>
+              </>
             )}
+            {/* Subtle sparkle effect */}
+            <div className="absolute top-2 right-2 w-1 h-1 bg-white rounded-full opacity-60 animate-pulse" style={{ animationDuration: '1.5s' }}></div>
+            <div className="absolute bottom-3 left-3 w-0.5 h-0.5 bg-white rounded-full opacity-40 animate-pulse" style={{ animationDuration: '2s', animationDelay: '0.5s' }}></div>
           </>
         )}
       </button>

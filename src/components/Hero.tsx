@@ -1,27 +1,54 @@
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useTypewriter } from '../hooks/useTypewriter';
+import { useEffect, useState } from 'react';
 
 const Hero = () => {
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.2 });
+  const [startTypewriter, setStartTypewriter] = useState(false);
+
+  const typewriterText = "Buried in Chats — Instantly.";
+  const { displayedText } = useTypewriter(typewriterText, {
+    speed: 80,
+    delay: 1000,
+    startOnMount: startTypewriter,
+  });
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStartTypewriter(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-6 lg:px-8 neural-pattern">
+    <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-6 lg:px-8 neural-pattern relative">
       <div className="max-w-4xl mx-auto text-center">
-        <div className="inline-flex items-center space-x-2 px-5 py-2.5 glass-dark rounded-full mb-8 animate-fade-in neon-glow">
+        <div className={`inline-flex items-center space-x-2 px-5 py-2.5 glass-dark rounded-full mb-8 neon-glow transition-all duration-700 ${
+          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+        }`}>
           <Sparkles className="w-4 h-4 text-violet-500 animate-neural-pulse" />
           <span className="text-sm font-semibold text-violet-700">AI-Powered Knowledge Base</span>
         </div>
 
-        <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-slide-up gradient-shadow">
+        <h1 className={`text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight gradient-shadow transition-all duration-700 delay-100 ${
+          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           Find Critical R&D Answers
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 via-purple-500 to-blue-500 animate-glow-pulse">
-            Buried in Chats — Instantly.
+            {displayedText}
+            <span className="inline-block w-0.5 h-8 lg:h-14 bg-violet-500 ml-1 animate-pulse align-middle"></span>
           </span>
         </h1>
 
-        <p className="text-lg lg:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up-delay">
+        <p className={`text-lg lg:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-300 ${
+          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           LuminAI passively monitors team chats and documents to create a smart knowledge base — so your team can innovate faster without searching endlessly.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delay">
+        <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-500 ${
+          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <button className="group px-8 py-4 bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white rounded-xl font-semibold transition-all duration-300 flex items-center space-x-2 neon-glow hover:scale-105">
             <span>Try Demo</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -31,9 +58,11 @@ const Hero = () => {
           </button>
         </div>
 
-        <div className="mt-16 lg:mt-20 relative">
+        <div className={`mt-16 lg:mt-20 relative transition-all duration-1000 delay-700 ${
+          heroVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
+        }`}>
           <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 to-blue-500/20 rounded-3xl blur-3xl opacity-50"></div>
-          <div className="relative glass-strong rounded-3xl p-8 lg:p-12 gradient-shadow neon-glow">
+          <div className="relative glass-strong rounded-3xl p-8 lg:p-12 gradient-shadow neon-glow hover:shadow-2xl hover:scale-[1.02] transition-all duration-500">
             <div className="glass-strong rounded-2xl overflow-hidden border border-white/50">
               <div className="glass px-4 py-3 border-b border-white/30 flex items-center space-x-2">
                 <div className="flex space-x-1.5">

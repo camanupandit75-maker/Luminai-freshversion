@@ -1,6 +1,9 @@
 import { Rocket, Search, Users } from 'lucide-react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const UseCases = () => {
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal({ threshold: 0.1 });
+
   const useCases = [
     {
       icon: Rocket,
@@ -23,9 +26,11 @@ const UseCases = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-28 px-6 lg:px-8 neural-pattern relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 lg:py-28 px-6 lg:px-8 neural-pattern relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-700 ${
+          sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 gradient-shadow">
             Built for R&D Teams
           </h2>
@@ -38,7 +43,10 @@ const UseCases = () => {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className="group glass-strong rounded-2xl p-8 transition-all duration-500 hover:-translate-y-3 neon-glow-blue hover:neon-glow hover:scale-105"
+              className={`group glass-strong rounded-2xl p-8 transition-all duration-700 hover:-translate-y-3 neon-glow-blue hover:neon-glow hover:scale-105 ${
+                sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}
+              style={{ transitionDelay: `${index * 150 + 300}ms` }}
             >
               <div className={`w-16 h-16 bg-gradient-to-br ${useCase.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl neon-glow`}>
                 <useCase.icon className="w-7 h-7 text-white" />
