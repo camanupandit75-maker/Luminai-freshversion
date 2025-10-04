@@ -55,35 +55,37 @@ const InteractiveDemo = () => {
   };
 
   return (
-    <section id="demo" className="py-20 lg:py-28 px-6 lg:px-8">
+    <section id="demo" className="py-20 lg:py-28 px-6 lg:px-8 neural-pattern">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 gradient-shadow">
             See LuminAI in Action
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium">
             Watch how LuminAI instantly retrieves answers from your team&#39;s conversations
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-violet-500 to-blue-500 px-6 py-4 flex items-center justify-between">
+        <div className="relative">
+          <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 to-blue-500/20 rounded-3xl blur-3xl opacity-50"></div>
+          <div className="relative glass-strong rounded-3xl overflow-hidden gradient-shadow neon-glow">
+          <div className="glass-dark border-b border-white/20 px-6 py-4 flex items-center justify-between backdrop-blur-xl">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-blue-500 rounded-xl flex items-center justify-center neon-glow shadow-lg">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-white font-semibold">LuminAI Demo</h3>
-                <p className="text-violet-100 text-sm">Live Knowledge Base</p>
+                <h3 className="text-gray-900 font-bold">LuminAI Demo</h3>
+                <p className="text-violet-600 text-sm font-medium">Live Knowledge Base</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-white text-sm">Active</span>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+              <span className="text-gray-900 text-sm font-semibold">Active</span>
             </div>
           </div>
 
-          <div className="p-6 lg:p-8 bg-gray-50 min-h-[400px] max-h-[500px] overflow-y-auto space-y-4">
+          <div className="p-6 lg:p-8 glass min-h-[400px] max-h-[500px] overflow-y-auto space-y-4">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -93,9 +95,9 @@ const InteractiveDemo = () => {
                   <div
                     className={`rounded-2xl px-5 py-3 ${
                       message.type === 'user'
-                        ? 'bg-violet-500 text-white'
-                        : 'bg-white border border-gray-200 text-gray-800'
-                    } shadow-sm`}
+                        ? 'bg-gradient-to-r from-violet-500 to-violet-600 text-white neon-glow'
+                        : 'glass-strong text-gray-800 neon-glow-blue'
+                    } shadow-lg`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-line">{message.text}</p>
                   </div>
@@ -105,7 +107,7 @@ const InteractiveDemo = () => {
             ))}
             {isAnimating && (
               <div className="flex justify-start animate-slide-up">
-                <div className="bg-white border border-gray-200 rounded-2xl px-5 py-3 shadow-sm">
+                <div className="glass-strong rounded-2xl px-5 py-3 shadow-lg neon-glow-blue">
                   <div className="flex space-x-2">
                     <div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -116,15 +118,16 @@ const InteractiveDemo = () => {
             )}
           </div>
 
-          <div className="p-6 bg-white border-t border-gray-200">
+          <div className="p-6 glass-dark border-t border-white/20">
             <button
               onClick={simulateNewQuery}
               disabled={isAnimating}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-violet-500 hover:bg-violet-600 disabled:bg-gray-300 text-white rounded-xl font-medium transition-all duration-300 hover:shadow-lg disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 disabled:from-gray-300 disabled:to-gray-400 text-white rounded-xl font-semibold transition-all duration-300 neon-glow hover:scale-105 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               <Send className="w-5 h-5" />
               <span>{isAnimating ? 'Processing...' : 'Try Another Query'}</span>
             </button>
+          </div>
           </div>
         </div>
       </div>

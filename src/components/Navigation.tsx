@@ -25,37 +25,40 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'glass shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-violet-300 to-blue-400 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">L</span>
+          <div className="flex items-center space-x-3 group cursor-pointer">
+            <div className="relative w-10 h-10 bg-gradient-to-br from-violet-400 via-violet-500 to-blue-500 rounded-xl flex items-center justify-center light-sweep neon-glow transition-all duration-300 group-hover:scale-110">
+              <span className="text-white font-bold text-lg relative z-10">L</span>
             </div>
-            <span className="text-xl font-semibold text-gray-900">LuminAI</span>
+            <span className="text-xl font-semibold bg-gradient-to-r from-gray-900 via-violet-900 to-gray-900 bg-clip-text text-transparent">
+              LuminAI
+            </span>
           </div>
 
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
-                className="text-gray-600 hover:text-violet-500 transition-colors text-sm font-medium"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-600 transition-all duration-300 rounded-lg hover:bg-white/50 hover:backdrop-blur-sm relative group"
               >
                 {link}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-blue-500 group-hover:w-3/4 transition-all duration-300 rounded-full"></span>
               </button>
             ))}
-            <button className="px-4 py-2 text-sm font-medium text-violet-600 hover:text-violet-700 transition-colors">
+            <button className="ml-4 px-5 py-2.5 text-sm font-medium text-violet-600 hover:text-violet-700 transition-all duration-300 glass rounded-lg hover:neon-glow hover:scale-105">
               Login
             </button>
           </div>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-gray-900"
+            className="lg:hidden p-2 text-gray-700 hover:text-violet-600 transition-colors glass rounded-lg"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -63,18 +66,18 @@ const Navigation = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100">
-          <div className="px-6 py-4 space-y-3">
+        <div className="lg:hidden glass-strong border-t border-white/30 shadow-xl">
+          <div className="px-6 py-4 space-y-2">
             {navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
-                className="block w-full text-left py-2 text-gray-600 hover:text-violet-500 transition-colors text-sm font-medium"
+                className="block w-full text-left py-3 px-4 text-gray-700 hover:text-violet-600 transition-all duration-300 text-sm font-medium rounded-lg hover:glass"
               >
                 {link}
               </button>
             ))}
-            <button className="block w-full text-left py-2 text-violet-600 hover:text-violet-700 transition-colors text-sm font-medium">
+            <button className="block w-full text-left py-3 px-4 text-violet-600 hover:text-violet-700 transition-all duration-300 text-sm font-medium rounded-lg glass neon-glow">
               Login
             </button>
           </div>

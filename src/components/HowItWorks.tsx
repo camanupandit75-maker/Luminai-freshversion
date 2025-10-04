@@ -23,14 +23,14 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28 px-6 lg:px-8 bg-gray-50">
+    <section id="how-it-works" className="py-20 lg:py-28 px-6 lg:px-8 neural-pattern relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 gradient-shadow">
             How It Works
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Get started in minutes and unlock your team's hidden knowledge
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium">
+            Get started in minutes and unlock your team&#39;s hidden knowledge
           </p>
         </div>
 
@@ -40,27 +40,27 @@ const HowItWorks = () => {
               key={index}
               className="relative group"
             >
-              <div className="bg-white rounded-2xl p-8 h-full transition-all duration-300 hover:shadow-xl border border-gray-100 hover:border-violet-200">
-                <div className="mb-6">
-                  <span className="text-5xl font-bold text-violet-100 group-hover:text-violet-200 transition-colors">
+              <div className="glass-strong rounded-2xl p-8 h-full transition-all duration-500 hover:scale-105 neon-glow-blue hover:neon-glow group-hover:glass">
+                <div className="mb-6 relative">
+                  <span className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-violet-200 to-blue-200 group-hover:from-violet-300 group-hover:to-blue-300 transition-all duration-500">
                     {step.number}
                   </span>
                 </div>
-                <div className="w-12 h-12 bg-gradient-to-br from-violet-400 to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 bg-gradient-to-br from-violet-400 via-violet-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-500 neon-glow shadow-xl">
                   <step.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed font-medium">
                   {step.description}
                 </p>
               </div>
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 text-violet-300">
-                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.75 6.75L19.25 12L13.75 17.25" />
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H4.75" />
+                <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2">
+                  <svg width="32" height="32" fill="none" viewBox="0 0 24 24" className="text-violet-400 animate-neural-pulse drop-shadow-lg">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13.75 6.75L19.25 12L13.75 17.25" />
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 12H4.75" />
                   </svg>
                 </div>
               )}
