@@ -55,11 +55,11 @@ const InteractiveDemo = () => {
   };
 
   return (
-    <section id="demo" className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-b from-pink-50 via-purple-100 to-blue-100">
+    <section id="demo" className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 via-purple-50/50 to-blue-50/30">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl lg:text-6xl font-bold mb-5 tracking-tight">
-            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 bg-clip-text text-transparent">
               See LuminAI in Action
             </span>
           </h2>
@@ -69,10 +69,10 @@ const InteractiveDemo = () => {
         </div>
 
         <div className="relative">
-          <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl overflow-hidden shadow-2xl border-2 border-purple-300">
-          <div className="bg-gradient-to-r from-purple-100 to-pink-100 border-b border-purple-300 px-6 py-4 flex items-center justify-between">
+          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl border border-purple-200">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-b border-purple-200 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center shadow-lg shadow-purple-500/50">
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -86,7 +86,7 @@ const InteractiveDemo = () => {
             </div>
           </div>
 
-          <div className="p-6 lg:p-8 bg-gradient-to-br from-white to-purple-50/50 min-h-[400px] max-h-[500px] overflow-y-auto space-y-4">
+          <div className="p-6 lg:p-8 bg-white min-h-[400px] max-h-[500px] overflow-y-auto space-y-4">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -96,8 +96,8 @@ const InteractiveDemo = () => {
                   <div
                     className={`rounded-lg px-5 py-3 ${
                       message.type === 'user'
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50'
-                        : 'bg-gradient-to-br from-blue-100 to-cyan-100 text-slate-800 border-2 border-blue-300 shadow-md'
+                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                        : 'bg-gradient-to-br from-blue-50 to-cyan-50 text-slate-800 border border-blue-200'
                     }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-line">{message.text}</p>
@@ -108,22 +108,22 @@ const InteractiveDemo = () => {
             ))}
             {isAnimating && (
               <div className="flex justify-start animate-slide-up">
-                <div className="bg-gradient-to-br from-purple-100 to-pink-100 border-2 border-purple-300 rounded-lg px-5 py-3 shadow-md">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-lg px-5 py-3">
                   <div className="flex space-x-2">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-pink-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="p-6 bg-gradient-to-r from-purple-100 to-pink-100 border-t border-purple-300">
+          <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 border-t border-purple-200">
             <button
               onClick={simulateNewQuery}
               disabled={isAnimating}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-slate-300 disabled:to-slate-300 text-white rounded-lg font-semibold transition-all duration-200 disabled:cursor-not-allowed shadow-lg shadow-purple-500/50"
+              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-slate-300 disabled:to-slate-300 text-white rounded-lg font-semibold transition-all duration-200 disabled:cursor-not-allowed shadow-md"
             >
               <Send className="w-5 h-5" />
               <span>{isAnimating ? 'Processing...' : 'Try Another Query'}</span>
