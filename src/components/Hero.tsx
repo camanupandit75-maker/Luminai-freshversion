@@ -6,8 +6,11 @@ const Hero = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-8 relative">
-      <div className="max-w-5xl mx-auto text-center">
+    <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-8 relative overflow-hidden">
+      {/* Gradient glow background */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-br from-blue-100 via-cyan-50 to-transparent opacity-40 blur-3xl rounded-full pointer-events-none"></div>
+
+      <div className="max-w-5xl mx-auto text-center relative z-10">
         <div className={`inline-flex items-center space-x-2 px-4 py-2 bg-slate-100 rounded-lg mb-8 transition-all duration-700 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
         }`}>
@@ -15,10 +18,13 @@ const Hero = () => {
           <span className="text-sm font-medium text-slate-700">AI-Powered Knowledge Management</span>
         </div>
 
-        <h1 className={`text-5xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight tracking-tight transition-all duration-700 delay-100 ${
+        <h1 className={`relative text-5xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight tracking-tight transition-all duration-700 delay-100 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          AI That Remembers What Your Team Forgets.
+          <span className="relative">
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 opacity-20 blur-xl"></span>
+            <span className="relative">AI That Remembers What Your Team Forgets.</span>
+          </span>
         </h1>
 
         <div className={`mb-10 transition-all duration-700 delay-200 ${
