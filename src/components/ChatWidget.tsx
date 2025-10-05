@@ -71,14 +71,14 @@ const ChatWidget = () => {
       <button
         ref={orbRef}
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full transition-all duration-200 flex items-center justify-center shadow-lg ${
+        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-xl transition-all duration-200 flex items-center justify-center shadow-xl ${
           isOpen
-            ? 'bg-white border-2 border-amber-200 hover:border-amber-300'
-            : 'bg-amber-900 hover:bg-amber-950'
+            ? 'bg-white border-2 border-slate-200 hover:border-slate-300'
+            : 'bg-slate-900 hover:bg-slate-800'
         }`}
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-amber-900" />
+          <X className="w-6 h-6 text-slate-900" />
         ) : (
           <MessageCircle className="w-6 h-6 text-white" />
         )}
@@ -86,17 +86,17 @@ const ChatWidget = () => {
 
       {isOpen && (
         <div className="fixed bottom-24 right-6 z-50 w-[380px] animate-slide-up">
-          <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-amber-200">
-          <div className="bg-amber-50 border-b border-amber-200 px-6 py-4 flex items-center justify-between">
+          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
+          <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-amber-900 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-amber-950 font-bold">Ask Lumin AI</h3>
+                <h3 className="text-slate-900 font-bold">Ask LuminAI</h3>
                 <div className="flex items-center space-x-1">
-                  <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
-                  <span className="text-amber-800 text-xs font-semibold">Online</span>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-slate-600 text-xs font-semibold">Online</span>
                 </div>
               </div>
             </div>
@@ -109,10 +109,10 @@ const ChatWidget = () => {
                 className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[85%] rounded-lg px-4 py-3 ${
                     message.type === 'user'
-                      ? 'bg-amber-900 text-white'
-                      : 'bg-amber-50 text-amber-950 border border-amber-200'
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-50 text-slate-800 border border-slate-200'
                   }`}
                 >
                   <p className="text-sm leading-relaxed">{message.text}</p>
@@ -121,11 +121,11 @@ const ChatWidget = () => {
             ))}
           </div>
 
-          <div className="p-4 bg-amber-50 border-t border-amber-200">
+          <div className="p-4 bg-slate-50 border-t border-slate-200">
             {currentStep < conversation.length - 1 ? (
               <button
                 onClick={handleSendMessage}
-                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-amber-900 hover:bg-amber-950 text-white rounded-full font-semibold transition-colors duration-200"
+                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-semibold transition-colors duration-200 shadow-lg"
               >
                 <Send className="w-4 h-4" />
                 <span>Continue Demo</span>
@@ -133,7 +133,7 @@ const ChatWidget = () => {
             ) : (
               <button
                 onClick={() => setCurrentStep(0)}
-                className="w-full px-4 py-3 bg-white border-2 border-amber-200 hover:border-amber-300 text-amber-900 rounded-full font-semibold transition-all duration-200"
+                className="w-full px-4 py-3 bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-900 rounded-lg font-semibold transition-all duration-200"
               >
                 Restart Demo
               </button>

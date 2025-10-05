@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-amber-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <main className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         <Hero />
