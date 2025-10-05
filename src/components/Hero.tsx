@@ -60,7 +60,7 @@ const Hero = () => {
           </div>
 
           {/* Sticker: "Ideas never slip away here" */}
-          <div className="hidden lg:block absolute -bottom-16 -right-8 xl:-right-20 z-20">
+          <div className="block absolute -bottom-16 -right-8 xl:-right-20 z-20" style={{ border: '2px solid red' }}>
             <div
               className="w-[180px] transform -rotate-[4deg] transition-all duration-400 hover:-translate-y-1 hover:rotate-0 cursor-pointer"
               style={{
