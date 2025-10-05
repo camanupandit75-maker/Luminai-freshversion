@@ -3,12 +3,12 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useEffect, useState } from 'react';
 
 const marqueeItems = [
-  { icon: Brain, text: 'AI-Powered Insights', color: 'from-blue-500 to-cyan-500', bg: 'bg-gradient-to-br from-blue-50 to-cyan-50', border: 'border-blue-200' },
-  { icon: Shield, text: 'Enterprise Security', color: 'from-emerald-500 to-teal-500', bg: 'bg-gradient-to-br from-emerald-50 to-teal-50', border: 'border-emerald-200' },
-  { icon: Zap, text: 'Lightning Fast', color: 'from-amber-500 to-orange-500', bg: 'bg-gradient-to-br from-amber-50 to-orange-50', border: 'border-amber-200' },
-  { icon: TrendingUp, text: 'Smart Analytics', color: 'from-pink-500 to-rose-500', bg: 'bg-gradient-to-br from-pink-50 to-rose-50', border: 'border-pink-200' },
-  { icon: Users, text: 'Team Collaboration', color: 'from-violet-500 to-fuchsia-500', bg: 'bg-gradient-to-br from-violet-50 to-fuchsia-50', border: 'border-violet-200' },
-  { icon: Clock, text: 'Real-Time Sync', color: 'from-cyan-500 to-blue-500', bg: 'bg-gradient-to-br from-cyan-50 to-blue-50', border: 'border-cyan-200' },
+  { icon: Brain, text: 'AI-Powered Insights', color: 'from-slate-600 to-slate-700', bg: 'bg-slate-50', border: 'border-slate-200' },
+  { icon: Shield, text: 'Enterprise Security', color: 'from-slate-600 to-slate-700', bg: 'bg-slate-50', border: 'border-slate-200' },
+  { icon: Zap, text: 'Lightning Fast', color: 'from-slate-600 to-slate-700', bg: 'bg-slate-50', border: 'border-slate-200' },
+  { icon: TrendingUp, text: 'Smart Analytics', color: 'from-slate-600 to-slate-700', bg: 'bg-slate-50', border: 'border-slate-200' },
+  { icon: Users, text: 'Team Collaboration', color: 'from-slate-600 to-slate-700', bg: 'bg-slate-50', border: 'border-slate-200' },
+  { icon: Clock, text: 'Real-Time Sync', color: 'from-slate-600 to-slate-700', bg: 'bg-slate-50', border: 'border-slate-200' },
 ];
 
 export const HeroWithMarquee = () => {
@@ -20,14 +20,14 @@ export const HeroWithMarquee = () => {
   }, []);
 
   return (
-    <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white">
+    <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-slate-50 via-slate-100 to-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <div className={`inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-cyan-100 border border-blue-200 rounded-lg mb-8 transition-all duration-700 ${
+          <div className={`inline-flex items-center space-x-2 px-4 py-2 bg-slate-100 border border-slate-300 rounded-lg mb-8 transition-all duration-700 ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
           }`}>
-            <Sparkles className="w-4 h-4 text-blue-600" />
-            <span className="text-sm font-medium text-blue-900">AI-Powered Knowledge Management</span>
+            <Sparkles className="w-4 h-4 text-slate-600" />
+            <span className="text-sm font-medium text-slate-700">AI-Powered Knowledge Management</span>
           </div>
 
           <h1 className={`text-5xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight tracking-tight transition-all duration-700 delay-100 ${
@@ -35,7 +35,7 @@ export const HeroWithMarquee = () => {
           }`}>
             Transform Your Team's
             <br />
-            <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="text-slate-800">
               Knowledge Into Power
             </span>
           </h1>
@@ -49,11 +49,11 @@ export const HeroWithMarquee = () => {
           <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-300 ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white rounded-lg font-semibold transition-all duration-200 flex items-center space-x-2 shadow-lg shadow-blue-500/30">
+            <button className="group px-8 py-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg font-semibold transition-all duration-200 flex items-center space-x-2 shadow-md">
               <span>Get Started Free</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="px-8 py-4 bg-white border-2 border-blue-200 hover:border-blue-300 hover:bg-blue-50 text-blue-900 rounded-lg font-semibold transition-all duration-200">
+            <button className="px-8 py-4 bg-white border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-800 rounded-lg font-semibold transition-all duration-200">
               Watch Demo
             </button>
           </div>
@@ -74,24 +74,24 @@ export const HeroWithMarquee = () => {
 
             <div className="p-8 lg:p-16 bg-white">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-lg hover:shadow-blue-100 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200 hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <Brain className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-semibold text-slate-900 mb-2">Smart Capture</h3>
                   <p className="text-sm text-slate-600">Automatically extracts key insights from conversations</p>
                 </div>
 
-                <div className="text-center p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-200 hover:shadow-lg hover:shadow-amber-100 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-orange-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200 hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <Zap className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-semibold text-slate-900 mb-2">Instant Recall</h3>
                   <p className="text-sm text-slate-600">Find any information in seconds with AI search</p>
                 </div>
 
-                <div className="text-center p-6 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-200 hover:shadow-lg hover:shadow-emerald-100 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200 hover:shadow-md transition-all duration-300">
+                  <div className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-semibold text-slate-900 mb-2">Team Sync</h3>
@@ -113,7 +113,7 @@ export const HeroWithMarquee = () => {
                     key={index}
                     className={`inline-flex items-center space-x-3 px-6 py-3 ${item.bg} border ${item.border} rounded-lg shadow-sm mx-3 hover:shadow-md transition-shadow duration-200`}
                   >
-                    <div className={`bg-gradient-to-r ${item.color} p-1.5 rounded-md`}>
+                    <div className="bg-slate-700 p-1.5 rounded-md">
                       <item.icon className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-sm font-medium text-slate-800 whitespace-nowrap">{item.text}</span>
