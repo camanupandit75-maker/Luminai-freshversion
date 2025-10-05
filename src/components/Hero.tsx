@@ -63,14 +63,15 @@ const Hero = () => {
           <img
             src="https://files.openai.com/file_00000000686c61faa0aa07f9697bb645"
             alt="Ideas never slip away here sticker"
-            className="hidden lg:block absolute cursor-pointer"
+            className="hidden lg:block absolute cursor-pointer z-50"
             style={{
-              bottom: '40px',
-              right: '60px',
-              maxWidth: '180px',
+              top: '-80px',
+              right: '-40px',
+              width: '180px',
               transform: 'rotate(-4deg)',
               boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
-              transition: 'all 0.25s ease-in-out'
+              transition: 'all 0.25s ease-in-out',
+              border: '3px solid red'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'rotate(0deg) translateY(-4px)';
