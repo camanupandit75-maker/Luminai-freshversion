@@ -16,37 +16,6 @@ const Hero = () => {
       {/* Gradient glow background */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-br from-blue-100 via-cyan-50 to-transparent opacity-40 blur-3xl rounded-full pointer-events-none"></div>
 
-      {/* Sticker: "Ideas never slip away here" */}
-      <div className="hidden lg:block absolute top-[45%] right-8 xl:right-12 z-20">
-        <div
-          className="w-[180px] transform -rotate-[4deg] transition-all duration-400 hover:-translate-y-1 hover:rotate-0 cursor-pointer"
-          style={{
-            boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
-            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.05))'
-          }}
-        >
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-            {/* Purple sticky note background */}
-            <rect width="200" height="200" fill="#B4A7FF" rx="4"/>
-
-            {/* Text: "Ideas never" */}
-            <text x="20" y="60" fill="#F4F87E" fontSize="32" fontWeight="900" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" letterSpacing="-0.5">
-              Ideas never
-            </text>
-
-            {/* Text: "slip away" */}
-            <text x="20" y="100" fill="#F4F87E" fontSize="32" fontWeight="900" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" letterSpacing="-0.5">
-              slip away
-            </text>
-
-            {/* Text: "here." in cursive style */}
-            <text x="20" y="150" fill="#2D2D2D" fontSize="48" fontWeight="400" fontFamily="'Brush Script MT', cursive" fontStyle="italic">
-              here.
-            </text>
-          </svg>
-        </div>
-      </div>
-
       <div className="max-w-5xl mx-auto text-center relative z-10">
 
         <div className={`inline-flex items-center space-x-2 px-4 py-2 bg-slate-100 rounded-xl mb-8 transition-all duration-700 ${
@@ -77,16 +46,42 @@ const Hero = () => {
           LuminIQ passively monitors team chats and documents to create a smart knowledge base — so your team can innovate faster without searching endlessly.
         </p>
 
-        <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 lg:mb-12 transition-all duration-700 delay-500 ${
-          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <button className="group px-8 py-4 bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:scale-105 text-white rounded-xl font-semibold transition-all duration-300 flex items-center space-x-2 shadow-sm">
-            <span>Try Demo</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-          </button>
-          <button className="px-8 py-4 bg-white border border-[#E2E8F0] hover:border-slate-300 hover:bg-slate-50 hover:shadow-lg hover:scale-105 text-slate-900 rounded-xl font-semibold transition-all duration-300 shadow-sm">
-            Request Access
-          </button>
+        <div className="relative">
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 lg:mb-12 transition-all duration-700 delay-500 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <button className="group px-8 py-4 bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:scale-105 text-white rounded-xl font-semibold transition-all duration-300 flex items-center space-x-2 shadow-sm">
+              <span>Try Demo</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+            <button className="px-8 py-4 bg-white border border-[#E2E8F0] hover:border-slate-300 hover:bg-slate-50 hover:shadow-lg hover:scale-105 text-slate-900 rounded-xl font-semibold transition-all duration-300 shadow-sm">
+              Request Access
+            </button>
+          </div>
+
+          {/* Sticker: "Ideas never slip away here" */}
+          <div className="hidden lg:block absolute -bottom-16 -right-8 xl:-right-20 z-20">
+            <div
+              className="w-[180px] transform -rotate-[4deg] transition-all duration-400 hover:-translate-y-1 hover:rotate-0 cursor-pointer"
+              style={{
+                boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.05))'
+              }}
+            >
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+                <rect width="200" height="200" fill="#B4A7FF" rx="4"/>
+                <text x="20" y="60" fill="#F4F87E" fontSize="32" fontWeight="900" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" letterSpacing="-0.5">
+                  Ideas never
+                </text>
+                <text x="20" y="100" fill="#F4F87E" fontSize="32" fontWeight="900" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" letterSpacing="-0.5">
+                  slip away
+                </text>
+                <text x="20" y="150" fill="#2D2D2D" fontSize="48" fontWeight="400" fontFamily="'Brush Script MT', cursive" fontStyle="italic">
+                  here.
+                </text>
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/* Diagonal divider between text and image */}
