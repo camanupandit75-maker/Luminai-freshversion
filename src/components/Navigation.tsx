@@ -32,11 +32,11 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <div className="w-8 h-8 bg-gradient-to-br from-slate-700 to-slate-900 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <span className="text-white font-bold text-sm">L</span>
+            <div className="w-10 h-10 bg-gradient-to-br from-green-400 via-cyan-400 via-blue-500 to-purple-600 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <span className="text-white font-bold text-lg">L</span>
             </div>
-            <span className="text-xl font-bold text-slate-900">
-              LuminIQ
+            <span className="text-2xl font-bold text-slate-900">
+              Lumin<span className="text-slate-900">IQ</span><span className="text-orange-500">🔍</span>
             </span>
           </div>
 
