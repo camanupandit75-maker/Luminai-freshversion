@@ -25,15 +25,15 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'glass shadow-lg' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100' : 'bg-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-2 group cursor-pointer">
-            <span className="text-3xl transition-all duration-300 group-hover:scale-110">🔮</span>
-            <span className="text-xl font-semibold bg-gradient-to-r from-gray-900 via-violet-900 to-gray-900 bg-clip-text text-transparent">
+            <span className="text-2xl transition-all duration-300 group-hover:scale-110">🔮</span>
+            <span className="text-xl font-bold text-gray-900">
               Lumin AI
             </span>
           </div>
@@ -43,20 +43,19 @@ const Navigation = () => {
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-violet-600 transition-all duration-300 rounded-lg hover:bg-white/50 hover:backdrop-blur-sm relative group"
+                className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 {link}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-blue-500 group-hover:w-3/4 transition-all duration-300 rounded-full"></span>
               </button>
             ))}
-            <button className="ml-4 px-5 py-2.5 text-sm font-medium text-violet-600 hover:text-violet-700 transition-all duration-300 glass rounded-lg hover:neon-glow hover:scale-105">
+            <button className="ml-4 px-6 py-2.5 text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 transition-colors duration-200 rounded-full">
               Login
             </button>
           </div>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-violet-600 transition-colors glass rounded-lg"
+            className="lg:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -64,18 +63,18 @@ const Navigation = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden glass-strong border-t border-white/30 shadow-xl">
-          <div className="px-6 py-4 space-y-2">
+        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
+          <div className="px-6 py-4 space-y-1">
             {navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
-                className="block w-full text-left py-3 px-4 text-gray-700 hover:text-violet-600 transition-all duration-300 text-sm font-medium rounded-lg hover:glass"
+                className="block w-full text-left py-3 px-4 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200 text-sm font-medium rounded-lg"
               >
                 {link}
               </button>
             ))}
-            <button className="block w-full text-left py-3 px-4 text-violet-600 hover:text-violet-700 transition-all duration-300 text-sm font-medium rounded-lg glass neon-glow">
+            <button className="block w-full mt-2 py-3 px-4 text-white bg-gray-900 hover:bg-gray-800 transition-colors duration-200 text-sm font-semibold rounded-full text-center">
               Login
             </button>
           </div>

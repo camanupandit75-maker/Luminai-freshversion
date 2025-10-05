@@ -26,15 +26,15 @@ const UseCases = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28 px-6 lg:px-8 neural-pattern relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 lg:py-32 px-6 lg:px-8 bg-white relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className={`text-center mb-16 transition-all duration-700 ${
+        <div className={`text-center mb-20 transition-all duration-700 ${
           sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 gradient-shadow">
+          <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-5 tracking-tight">
             Built for R&D Teams
           </h2>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Transform how your team captures and leverages collective knowledge
           </p>
         </div>
@@ -43,42 +43,39 @@ const UseCases = () => {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className={`group glass-strong rounded-2xl p-8 transition-all duration-700 hover:-translate-y-3 neon-glow-blue hover:neon-glow hover:scale-105 ${
+              className={`group bg-gray-50 rounded-2xl p-8 transition-all duration-300 hover:bg-gray-100 ${
                 sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150 + 300}ms` }}
             >
-              <div className={`w-16 h-16 bg-gradient-to-br ${useCase.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl neon-glow`}>
+              <div className="w-14 h-14 bg-gray-900 rounded-xl flex items-center justify-center mb-6 transition-all duration-300">
                 <useCase.icon className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 {useCase.title}
               </h3>
-              <p className="text-gray-700 leading-relaxed font-medium">
+              <p className="text-gray-600 leading-relaxed text-lg">
                 {useCase.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="relative inline-block">
-            <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 to-blue-500/20 rounded-3xl blur-3xl opacity-50"></div>
-            <div className="relative glass-strong rounded-3xl gradient-shadow neon-glow p-8 lg:p-12">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+        <div className="mt-20 text-center">
+          <div className="bg-gray-50 rounded-3xl p-12 lg:p-16 border border-gray-200">
+            <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-5">
               Ready to unlock your team&#39;s knowledge?
             </h3>
-            <p className="text-gray-700 mb-8 max-w-xl mx-auto font-medium">
+            <p className="text-xl text-gray-600 mb-10 max-w-xl mx-auto">
               Join innovative R&D teams already using LuminAI to innovate faster
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white rounded-xl font-semibold transition-all duration-300 neon-glow hover:scale-105">
+              <button className="px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-full font-semibold transition-colors duration-200">
                 Start Free Trial
               </button>
-              <button className="px-8 py-4 glass hover:glass-strong text-gray-800 rounded-xl font-semibold transition-all duration-300 hover:neon-glow hover:scale-105">
+              <button className="px-8 py-4 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-900 rounded-full font-semibold transition-all duration-200">
                 Schedule Demo
               </button>
-            </div>
             </div>
           </div>
         </div>

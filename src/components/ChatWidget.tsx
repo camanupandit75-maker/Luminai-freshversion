@@ -67,74 +67,42 @@ const ChatWidget = () => {
   return (
     <>
       {/* Particle ring effect */}
-      {!isOpen && (
-        <>
-          <div className="fixed bottom-6 right-6 z-40 w-16 h-16 pointer-events-none">
-            <div className="absolute inset-0 rounded-full border-2 border-violet-400/30 animate-ping" style={{ animationDuration: '2s' }}></div>
-          </div>
-          <div className="fixed bottom-6 right-6 z-40 w-20 h-20 pointer-events-none">
-            <div className="absolute inset-0 rounded-full border border-blue-400/20 animate-ping" style={{ animationDuration: '3s', animationDelay: '0.5s' }}></div>
-          </div>
-        </>
-      )}
 
       <button
         ref={orbRef}
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full transition-all duration-300 flex items-center justify-center overflow-hidden ${
+        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full transition-all duration-200 flex items-center justify-center shadow-lg ${
           isOpen
-            ? 'glass-strong hover:scale-105 neon-glow rotate-90'
-            : 'bg-gradient-to-br from-violet-500 via-violet-600 to-blue-500'
+            ? 'bg-white border-2 border-gray-200 hover:border-gray-300'
+            : 'bg-gray-900 hover:bg-gray-800'
         }`}
-        style={{
-          transform: isOpen
-            ? 'rotate(90deg)'
-            : `scale(${proximityScale * (isNearCursor ? 1 : breathingScale)})`,
-          boxShadow: isOpen
-            ? '0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1)'
-            : `0 0 ${20 + glowIntensity * 40}px rgba(139, 92, 246, ${0.4 + glowIntensity * 0.4}),
-               0 0 ${40 + glowIntensity * 60}px rgba(59, 130, 246, ${0.2 + glowIntensity * 0.3}),
-               inset 0 0 ${10 + glowIntensity * 20}px rgba(255, 255, 255, ${0.1 + glowIntensity * 0.2})`,
-        }}
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-gray-900 transition-transform duration-300" />
+          <X className="w-6 h-6 text-gray-900" />
         ) : (
-          <>
-            <MessageCircle className="w-6 h-6 text-white transition-transform duration-300 relative z-10" />
-            {isNearCursor && (
-              <>
-                <div className="absolute inset-0 rounded-full bg-white/20 animate-ping"></div>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent"></div>
-              </>
-            )}
-            {/* Subtle sparkle effect */}
-            <div className="absolute top-2 right-2 w-1 h-1 bg-white rounded-full opacity-60 animate-pulse" style={{ animationDuration: '1.5s' }}></div>
-            <div className="absolute bottom-3 left-3 w-0.5 h-0.5 bg-white rounded-full opacity-40 animate-pulse" style={{ animationDuration: '2s', animationDelay: '0.5s' }}></div>
-          </>
+          <MessageCircle className="w-6 h-6 text-white" />
         )}
       </button>
 
       {isOpen && (
         <div className="fixed bottom-24 right-6 z-50 w-[380px] animate-slide-up">
-          <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/30 to-blue-500/30 rounded-3xl blur-2xl opacity-60"></div>
-          <div className="relative glass-strong rounded-3xl overflow-hidden gradient-shadow neon-glow">
-          <div className="glass-dark border-b border-white/20 px-6 py-4 flex items-center justify-between backdrop-blur-xl">
+          <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+          <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-blue-500 rounded-xl flex items-center justify-center neon-glow shadow-lg light-sweep">
+              <div className="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-gray-900 font-bold">Ask LuminAI</h3>
+                <h3 className="text-gray-900 font-bold">Ask Lumin AI</h3>
                 <div className="flex items-center space-x-1">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-                  <span className="text-violet-600 text-xs font-semibold">Online</span>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-gray-600 text-xs font-semibold">Online</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="p-4 glass h-[400px] overflow-y-auto space-y-3">
+          <div className="p-4 bg-white h-[400px] overflow-y-auto space-y-3">
             {displayedMessages.map((message, index) => (
               <div
                 key={index}
@@ -143,21 +111,21 @@ const ChatWidget = () => {
                 <div
                   className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                     message.type === 'user'
-                      ? 'bg-gradient-to-r from-violet-500 to-violet-600 text-white neon-glow'
-                      : 'glass-strong text-gray-800 neon-glow-blue'
-                  } shadow-lg`}
+                      ? 'bg-gray-900 text-white'
+                      : 'bg-gray-100 text-gray-800 border border-gray-200'
+                  }`}
                 >
-                  <p className="text-sm leading-relaxed font-medium">{message.text}</p>
+                  <p className="text-sm leading-relaxed">{message.text}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="p-4 glass-dark border-t border-white/20">
+          <div className="p-4 bg-gray-50 border-t border-gray-200">
             {currentStep < conversation.length - 1 ? (
               <button
                 onClick={handleSendMessage}
-                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white rounded-xl font-semibold transition-all duration-300 neon-glow hover:scale-105"
+                className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-full font-semibold transition-colors duration-200"
               >
                 <Send className="w-4 h-4" />
                 <span>Continue Demo</span>
@@ -165,7 +133,7 @@ const ChatWidget = () => {
             ) : (
               <button
                 onClick={() => setCurrentStep(0)}
-                className="w-full px-4 py-3 glass hover:glass-strong text-gray-800 rounded-xl font-semibold transition-all duration-300 hover:neon-glow hover:scale-105"
+                className="w-full px-4 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-900 rounded-full font-semibold transition-all duration-200"
               >
                 Restart Demo
               </button>
