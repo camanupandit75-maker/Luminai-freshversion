@@ -6,7 +6,7 @@ const Hero = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-8 relative overflow-hidden">
+    <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-8 relative overflow-visible">
       {/* Diagonal cut accent - top left */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-teal-400 to-violet-600 opacity-10 -rotate-12 -translate-x-32 -translate-y-32 pointer-events-none"></div>
 
@@ -60,7 +60,7 @@ const Hero = () => {
           </div>
 
           {/* Sticker: "Ideas never slip away here" */}
-          <div className="block absolute -bottom-16 -right-8 xl:-right-20 z-20" style={{ border: '2px solid red' }}>
+          <div className="hidden lg:block absolute -bottom-16 -right-8 xl:-right-20 z-20">
             <div
               className="w-[180px] transform -rotate-[4deg] transition-all duration-400 hover:-translate-y-1 hover:rotate-0 cursor-pointer"
               style={{
