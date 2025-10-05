@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
-import Hero from './components/Hero';
+import { HeroWithMarquee } from './components/ui/cta-with-marquee';
 import HowItWorks from './components/HowItWorks';
 import InteractiveDemo from './components/InteractiveDemo';
 import UseCases from './components/UseCases';
@@ -18,7 +18,7 @@ function App() {
     <div className="min-h-screen bg-white">
       <Navigation />
       <main className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <Hero />
+        <HeroWithMarquee />
         <HowItWorks />
         <InteractiveDemo />
         <UseCases />
