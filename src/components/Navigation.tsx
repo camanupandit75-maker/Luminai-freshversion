@@ -26,7 +26,7 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200' : 'bg-white'
+        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-[#E2E8F0]' : 'bg-white border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -50,7 +50,7 @@ const Navigation = () => {
                 {link}
               </button>
             ))}
-            <button className="ml-4 px-6 py-2.5 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 transition-colors duration-200 rounded-lg">
+            <button className="ml-4 px-6 py-2.5 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 transition-colors duration-200 rounded-lg shadow-sm">
               Get Started
             </button>
           </div>
@@ -65,18 +65,18 @@ const Navigation = () => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-200 shadow-lg">
+        <div className="lg:hidden bg-white border-t border-[#E2E8F0] shadow-sm">
           <div className="px-6 py-4 space-y-1">
             {navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
-                className="block w-full text-left py-3 px-4 text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200 text-sm font-medium rounded-lg"
+                className="block w-full text-left py-3 px-4 text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors duration-200 text-sm font-medium rounded-xl"
               >
                 {link}
               </button>
             ))}
-            <button className="block w-full mt-2 py-3 px-4 text-white bg-slate-900 hover:bg-slate-800 transition-colors duration-200 text-sm font-semibold rounded-lg text-center">
+            <button className="block w-full mt-2 py-3 px-4 text-white bg-slate-900 hover:bg-slate-800 transition-colors duration-200 text-sm font-semibold rounded-xl text-center shadow-sm">
               Get Started
             </button>
           </div>

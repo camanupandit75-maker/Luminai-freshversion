@@ -62,13 +62,13 @@ const HowItWorks = () => {
               }`}
               style={{ transitionDelay: `${index * 150 + 300}ms` }}
             >
-              <div className={`bg-gradient-to-br ${step.bg} rounded-2xl p-8 h-full transition-all duration-300 hover:shadow-xl hover:scale-105 border ${step.border}`}>
+              <div className={`bg-gradient-to-br ${step.bg} rounded-xl p-8 h-full transition-all duration-300 hover:shadow-lg hover:scale-105 border border-[#E2E8F0]`}>
                 <div className="mb-6 relative">
                   <span className={`text-5xl font-bold ${step.numberColor}`}>
                     {step.number}
                   </span>
                 </div>
-                <div className={`w-12 h-12 bg-gradient-to-br ${step.gradient} rounded-lg flex items-center justify-center mb-6 transition-all duration-300 shadow-lg`}>
+                <div className={`w-12 h-12 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center mb-6 transition-all duration-300 shadow-sm`}>
                   <step.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">

@@ -51,12 +51,12 @@ const UseCases = () => {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className={`group bg-gradient-to-br ${useCase.bg} rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:scale-105 border-2 ${useCase.border} ${
+              className={`group bg-gradient-to-br ${useCase.bg} rounded-xl p-8 transition-all duration-300 hover:shadow-lg hover:scale-105 border border-[#E2E8F0] ${
                 sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150 + 300}ms` }}
             >
-              <div className={`w-14 h-14 bg-gradient-to-br ${useCase.gradient} rounded-lg flex items-center justify-center mb-6 transition-all duration-300 shadow-lg`}>
+              <div className={`w-14 h-14 bg-gradient-to-br ${useCase.gradient} rounded-xl flex items-center justify-center mb-6 transition-all duration-300 shadow-sm`}>
                 <useCase.icon className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
@@ -70,7 +70,7 @@ const UseCases = () => {
         </div>
 
         <div className="mt-20 text-center">
-          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-3xl p-12 lg:p-16 shadow-2xl shadow-purple-500/30">
+          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl p-12 lg:p-16 shadow-lg">
             <h3 className="text-3xl lg:text-4xl font-bold text-white mb-5">
               Ready to unlock your team&#39;s knowledge?
             </h3>
@@ -78,10 +78,10 @@ const UseCases = () => {
               Join innovative R&D teams already using LuminIQ to innovate faster
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="px-8 py-4 bg-white hover:bg-blue-50 text-purple-900 rounded-lg font-semibold transition-colors duration-200 shadow-lg">
+              <button className="px-8 py-4 bg-white hover:bg-blue-50 text-purple-900 rounded-xl font-semibold transition-colors duration-200 shadow-sm">
                 Start Free Trial
               </button>
-              <button className="px-8 py-4 bg-transparent border-2 border-white hover:bg-white/10 text-white rounded-lg font-semibold transition-all duration-200">
+              <button className="px-8 py-4 bg-transparent border border-white hover:bg-white/10 text-white rounded-xl font-semibold transition-all duration-200">
                 Schedule Demo
               </button>
             </div>

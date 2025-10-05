@@ -69,10 +69,10 @@ const InteractiveDemo = () => {
         </div>
 
         <div className="relative">
-          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl border border-purple-200">
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-b border-purple-200 px-6 py-4 flex items-center justify-between">
+          <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E2E8F0]">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-b border-[#E2E8F0] px-6 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -80,7 +80,7 @@ const InteractiveDemo = () => {
                 <p className="text-slate-600 text-sm font-medium">Live Knowledge Base</p>
               </div>
             </div>
-            <div className="flex items-center space-x-2 px-3 py-1.5 bg-white rounded-full border border-green-200">
+            <div className="flex items-center space-x-2 px-3 py-1.5 bg-white rounded-full border border-[#E2E8F0]">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span className="text-slate-700 text-sm font-semibold">Active</span>
             </div>
@@ -94,10 +94,10 @@ const InteractiveDemo = () => {
               >
                 <div className={`max-w-[80%] ${message.type === 'user' ? 'order-2' : 'order-1'}`}>
                   <div
-                    className={`rounded-lg px-5 py-3 ${
+                    className={`rounded-xl px-5 py-3 ${
                       message.type === 'user'
-                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                        : 'bg-gradient-to-br from-blue-50 to-cyan-50 text-slate-800 border border-blue-200'
+                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-sm'
+                        : 'bg-gradient-to-br from-blue-50 to-cyan-50 text-slate-800 border border-[#E2E8F0]'
                     }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-line">{message.text}</p>
@@ -108,7 +108,7 @@ const InteractiveDemo = () => {
             ))}
             {isAnimating && (
               <div className="flex justify-start animate-slide-up">
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-lg px-5 py-3">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-[#E2E8F0] rounded-xl px-5 py-3">
                   <div className="flex space-x-2">
                     <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -119,11 +119,11 @@ const InteractiveDemo = () => {
             )}
           </div>
 
-          <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 border-t border-purple-200">
+          <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 border-t border-[#E2E8F0]">
             <button
               onClick={simulateNewQuery}
               disabled={isAnimating}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-slate-300 disabled:to-slate-300 text-white rounded-lg font-semibold transition-all duration-200 disabled:cursor-not-allowed shadow-md"
+              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-slate-300 disabled:to-slate-300 text-white rounded-xl font-semibold transition-all duration-200 disabled:cursor-not-allowed shadow-sm"
             >
               <Send className="w-5 h-5" />
               <span>{isAnimating ? 'Processing...' : 'Try Another Query'}</span>
