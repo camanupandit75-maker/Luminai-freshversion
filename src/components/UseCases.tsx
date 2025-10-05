@@ -61,12 +61,12 @@ const UseCases = () => {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className={`group bg-gradient-to-br ${useCase.bg} rounded-xl p-8 transition-all duration-300 hover:shadow-lg hover:scale-105 border border-[#E2E8F0] ${
+              className={`group bg-gradient-to-br ${useCase.bg} rounded-xl p-8 transition-all duration-400 hover:shadow-lg hover:scale-105 hover:-translate-y-2 border border-[#E2E8F0] ${
                 sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150 + 300}ms` }}
             >
-              <div className={`w-14 h-14 bg-gradient-to-br ${useCase.gradient} rounded-xl flex items-center justify-center mb-6 transition-all duration-300 shadow-sm`}>
+              <div className={`w-14 h-14 bg-gradient-to-br ${useCase.gradient} rounded-xl flex items-center justify-center mb-6 transition-all duration-400 group-hover:scale-110 group-hover:rotate-3 shadow-sm`}>
                 <useCase.icon className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
@@ -88,10 +88,10 @@ const UseCases = () => {
               Join innovative R&D teams already using LuminIQ to innovate faster
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="px-8 py-4 bg-white hover:bg-blue-50 text-purple-900 rounded-xl font-semibold transition-colors duration-200 shadow-sm">
+              <button className="px-8 py-4 bg-white hover:bg-blue-50 hover:shadow-lg hover:scale-105 text-purple-900 rounded-xl font-semibold transition-all duration-300 shadow-sm">
                 Start Free Trial
               </button>
-              <button className="px-8 py-4 bg-transparent border border-white hover:bg-white/10 text-white rounded-xl font-semibold transition-all duration-200">
+              <button className="px-8 py-4 bg-transparent border border-white hover:bg-white/10 hover:scale-105 text-white rounded-xl font-semibold transition-all duration-300">
                 Schedule Demo
               </button>
             </div>

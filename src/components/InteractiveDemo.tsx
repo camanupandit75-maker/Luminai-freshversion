@@ -133,9 +133,9 @@ const InteractiveDemo = () => {
             <button
               onClick={simulateNewQuery}
               disabled={isAnimating}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-slate-300 disabled:to-slate-300 text-white rounded-xl font-semibold transition-all duration-200 disabled:cursor-not-allowed shadow-sm"
+              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 hover:scale-105 hover:shadow-lg disabled:from-slate-300 disabled:to-slate-300 text-white rounded-xl font-semibold transition-all duration-300 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-sm shadow-sm"
             >
-              <Send className="w-5 h-5" />
+              <Send className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               <span>{isAnimating ? 'Processing...' : 'Try Another Query'}</span>
             </button>
           </div>

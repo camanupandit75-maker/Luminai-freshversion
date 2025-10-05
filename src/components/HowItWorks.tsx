@@ -69,13 +69,13 @@ const HowItWorks = () => {
               }`}
               style={{ transitionDelay: `${index * 150 + 300}ms` }}
             >
-              <div className={`bg-gradient-to-br ${step.bg} rounded-xl p-8 h-full transition-all duration-300 hover:shadow-lg hover:scale-105 border border-[#E2E8F0]`}>
+              <div className={`bg-gradient-to-br ${step.bg} rounded-xl p-8 h-full transition-all duration-400 hover:shadow-lg hover:scale-105 hover:-translate-y-2 border border-[#E2E8F0]`}>
                 <div className="mb-6 relative">
                   <span className={`text-5xl font-bold ${step.numberColor}`}>
                     {step.number}
                   </span>
                 </div>
-                <div className={`w-12 h-12 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center mb-6 transition-all duration-300 shadow-sm`}>
+                <div className={`w-12 h-12 bg-gradient-to-br ${step.gradient} rounded-xl flex items-center justify-center mb-6 transition-all duration-400 group-hover:scale-110 group-hover:rotate-3 shadow-sm`}>
                   <step.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">
@@ -87,7 +87,7 @@ const HowItWorks = () => {
               </div>
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-5 transform -translate-y-1/2">
-                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24" className="text-blue-300">
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24" className="text-blue-300 transition-transform duration-300 group-hover:translate-x-1">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.75 6.75L19.25 12L13.75 17.25" />
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H4.75" />
                   </svg>

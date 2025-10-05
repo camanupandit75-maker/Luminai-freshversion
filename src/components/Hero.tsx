@@ -48,11 +48,11 @@ const Hero = () => {
         <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-500 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <button className="group px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-semibold transition-all duration-200 flex items-center space-x-2 shadow-sm">
+          <button className="group px-8 py-4 bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:scale-105 text-white rounded-xl font-semibold transition-all duration-300 flex items-center space-x-2 shadow-sm">
             <span>Try Demo</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
-          <button className="px-8 py-4 bg-white border border-[#E2E8F0] hover:border-slate-300 hover:bg-slate-50 text-slate-900 rounded-xl font-semibold transition-all duration-200 shadow-sm">
+          <button className="px-8 py-4 bg-white border border-[#E2E8F0] hover:border-slate-300 hover:bg-slate-50 hover:shadow-lg hover:scale-105 text-slate-900 rounded-xl font-semibold transition-all duration-300 shadow-sm">
             Request Access
           </button>
         </div>
