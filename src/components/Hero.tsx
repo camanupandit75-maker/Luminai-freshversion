@@ -60,28 +60,27 @@ const Hero = () => {
           </div>
 
           {/* Sticker: "Ideas never slip away here" */}
-          <div className="hidden lg:block absolute -bottom-16 -right-8 xl:-right-20 z-20">
-            <div
-              className="w-[180px] transform -rotate-[4deg] transition-all duration-400 hover:-translate-y-1 hover:rotate-0 cursor-pointer"
-              style={{
-                boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
-                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.05))'
-              }}
-            >
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-                <rect width="200" height="200" fill="#B4A7FF" rx="4"/>
-                <text x="20" y="60" fill="#F4F87E" fontSize="32" fontWeight="900" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" letterSpacing="-0.5">
-                  Ideas never
-                </text>
-                <text x="20" y="100" fill="#F4F87E" fontSize="32" fontWeight="900" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" letterSpacing="-0.5">
-                  slip away
-                </text>
-                <text x="20" y="150" fill="#2D2D2D" fontSize="48" fontWeight="400" fontFamily="'Brush Script MT', cursive" fontStyle="italic">
-                  here.
-                </text>
-              </svg>
-            </div>
-          </div>
+          <img
+            src="https://files.openai.com/file_00000000686c61faa0aa07f9697bb645"
+            alt="Ideas never slip away here sticker"
+            className="hidden lg:block absolute cursor-pointer"
+            style={{
+              bottom: '40px',
+              right: '60px',
+              maxWidth: '180px',
+              transform: 'rotate(-4deg)',
+              boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
+              transition: 'all 0.25s ease-in-out'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'rotate(0deg) translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.15)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'rotate(-4deg)';
+              e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.1)';
+            }}
+          />
         </div>
 
         {/* Diagonal divider between text and image */}
