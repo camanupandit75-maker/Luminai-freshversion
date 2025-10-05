@@ -27,15 +27,15 @@ const ChatWidget = () => {
   const conversation = [
     {
       type: 'bot',
-      text: "Hi! I'm LuminAI. Ask me anything about how I can help your team!",
+      text: "Hi! I'm LuminIQ. Ask me anything about how I can help your team!",
     },
     {
       type: 'user',
-      text: 'How does LuminAI integrate with our existing tools?',
+      text: 'How does LuminIQ integrate with our existing tools?',
     },
     {
       type: 'bot',
-      text: "Great question! LuminAI integrates seamlessly with Slack and Telegram. Simply add the bot to your workspace, and it starts learning from your team's conversations immediately. No complex setup required!",
+      text: "Great question! LuminIQ integrates seamlessly with Slack and Telegram. Simply add the bot to your workspace, and it starts learning from your team's conversations immediately. No complex setup required!",
     },
     {
       type: 'user',
@@ -93,7 +93,7 @@ const ChatWidget = () => {
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-slate-900 font-bold">Ask LuminAI</h3>
+                <h3 className="text-slate-900 font-bold">Ask LuminIQ</h3>
                 <div className="flex items-center space-x-1">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-slate-600 text-xs font-semibold">Online</span>

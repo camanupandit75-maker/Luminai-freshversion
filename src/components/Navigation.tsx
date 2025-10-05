@@ -36,7 +36,7 @@ const Navigation = () => {
               <span className="text-white font-bold text-sm">L</span>
             </div>
             <span className="text-xl font-bold text-slate-900">
-              LuminAI
+              LuminIQ
             </span>
           </div>
 

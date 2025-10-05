@@ -7,11 +7,11 @@ const Footer = () => {
             <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">L</span>
             </div>
-            <span className="text-lg font-bold text-slate-900">LuminAI</span>
+            <span className="text-lg font-bold text-slate-900">LuminIQ</span>
           </div>
 
           <div className="flex items-center space-x-6 text-sm text-slate-600">
-            <span>© 2025 LuminAI</span>
+            <span>© 2025 LuminIQ</span>
             <button className="hover:text-slate-900 transition-colors">Privacy</button>
             <button className="hover:text-slate-900 transition-colors">Terms</button>
           </div>

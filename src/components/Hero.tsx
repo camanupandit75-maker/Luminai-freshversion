@@ -30,7 +30,7 @@ const Hero = () => {
         <p className={`text-xl lg:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-300 ${
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          LuminAI passively monitors team chats and documents to create a smart knowledge base — so your team can innovate faster without searching endlessly.
+          LuminIQ passively monitors team chats and documents to create a smart knowledge base — so your team can innovate faster without searching endlessly.
         </p>
 
         <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 delay-500 ${
@@ -56,7 +56,7 @@ const Hero = () => {
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 </div>
-                <span className="text-xs font-medium text-slate-500 ml-4">LuminAI Dashboard</span>
+                <span className="text-xs font-medium text-slate-500 ml-4">LuminIQ Dashboard</span>
               </div>
               <div className="p-8 lg:p-10 space-y-6 bg-white">
                 <div className="flex items-start space-x-3">

@@ -16,7 +16,7 @@ const UseCases = () => {
     {
       icon: Search,
       title: 'Instant Team Knowledge',
-      description: 'Never lose critical information in chat history. LuminAI surfaces the right context exactly when you need it.',
+      description: 'Never lose critical information in chat history. LuminIQ surfaces the right context exactly when you need it.',
       gradient: 'from-blue-500 to-cyan-500',
       bg: 'from-blue-50 to-cyan-50',
       border: 'border-blue-200',
@@ -75,7 +75,7 @@ const UseCases = () => {
               Ready to unlock your team&#39;s knowledge?
             </h3>
             <p className="text-xl text-blue-100 mb-10 max-w-xl mx-auto">
-              Join innovative R&D teams already using LuminAI to innovate faster
+              Join innovative R&D teams already using LuminIQ to innovate faster
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button className="px-8 py-4 bg-white hover:bg-blue-50 text-purple-900 rounded-lg font-semibold transition-colors duration-200 shadow-lg">

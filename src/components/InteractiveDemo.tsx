@@ -60,11 +60,11 @@ const InteractiveDemo = () => {
         <div className="text-center mb-20">
           <h2 className="text-4xl lg:text-6xl font-bold mb-5 tracking-tight">
             <span className="bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 bg-clip-text text-transparent">
-              See LuminAI in Action
+              See LuminIQ in Action
             </span>
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Watch how LuminAI instantly retrieves answers from your team&#39;s conversations
+            Watch how LuminIQ instantly retrieves answers from your team&#39;s conversations
           </p>
         </div>
 
@@ -76,7 +76,7 @@ const InteractiveDemo = () => {
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-slate-900 font-bold">LuminAI Demo</h3>
+                <h3 className="text-slate-900 font-bold">LuminIQ Demo</h3>
                 <p className="text-slate-600 text-sm font-medium">Live Knowledge Base</p>
               </div>
             </div>
