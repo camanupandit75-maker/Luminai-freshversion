@@ -39,8 +39,10 @@ const HowItWorks = () => {
 
   return (
     <section ref={sectionRef} id="how-it-works" className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-b from-white via-slate-50 to-blue-50/30 relative overflow-hidden">
+      {/* Diagonal cut section separator */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-teal-400 via-cyan-500 to-violet-600 transform -rotate-12 opacity-40"></div>
       <div className="max-w-6xl mx-auto">
-        <div className={`text-center mb-20 transition-all duration-700 ${
+        <div className={`text-center mb-16 transition-all duration-700 ${
           sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-4xl lg:text-6xl font-bold mb-5 tracking-tight">
@@ -51,6 +53,11 @@ const HowItWorks = () => {
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Get started in minutes and unlock your team&#39;s hidden knowledge
           </p>
+        </div>
+
+        {/* Diagonal cut divider after title */}
+        <div className="flex justify-center mb-12">
+          <div className="w-20 h-1 bg-gradient-to-r from-teal-400 via-cyan-500 to-violet-600 transform -rotate-12 opacity-50"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">

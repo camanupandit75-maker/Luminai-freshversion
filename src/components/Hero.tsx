@@ -7,6 +7,12 @@ const Hero = () => {
 
   return (
     <section ref={heroRef} className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 lg:px-8 relative overflow-hidden">
+      {/* Diagonal cut accent - top left */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-teal-400 to-violet-600 opacity-10 -rotate-12 -translate-x-32 -translate-y-32 pointer-events-none"></div>
+
+      {/* Diagonal cut accent - top right */}
+      <div className="absolute top-20 right-0 w-64 h-64 bg-gradient-to-bl from-cyan-400 to-purple-500 opacity-10 rotate-12 translate-x-20 pointer-events-none"></div>
+
       {/* Gradient glow background */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-br from-blue-100 via-cyan-50 to-transparent opacity-40 blur-3xl rounded-full pointer-events-none"></div>
 
@@ -51,7 +57,12 @@ const Hero = () => {
           </button>
         </div>
 
-        <div className={`mt-20 lg:mt-24 relative transition-all duration-1000 delay-700 ${
+        {/* Diagonal divider between text and image */}
+        <div className="relative my-16 flex items-center justify-center">
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 via-cyan-500 to-violet-600 transform -rotate-12 opacity-60"></div>
+        </div>
+
+        <div className={`mt-8 lg:mt-12 relative transition-all duration-1000 delay-700 ${
           heroVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
         }`}>
           <div className="relative bg-white rounded-xl shadow-lg border border-[#E2E8F0] overflow-hidden">

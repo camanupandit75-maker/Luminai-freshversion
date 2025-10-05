@@ -55,9 +55,14 @@ const InteractiveDemo = () => {
   };
 
   return (
-    <section id="demo" className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 via-purple-50/50 to-blue-50/30">
+    <section id="demo" className="py-24 lg:py-32 px-6 lg:px-8 bg-gradient-to-b from-slate-50 via-purple-50/50 to-blue-50/30 relative overflow-hidden">
+      {/* Diagonal cut section separator */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-teal-400 via-cyan-500 to-violet-600 transform -rotate-12 opacity-40"></div>
+
+      {/* Diagonal cut accent - left side */}
+      <div className="absolute top-1/2 left-0 w-48 h-48 bg-gradient-to-br from-teal-400 to-violet-600 opacity-5 -rotate-12 -translate-x-16 pointer-events-none"></div>
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-6xl font-bold mb-5 tracking-tight">
             <span className="bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 bg-clip-text text-transparent">
               See LuminIQ in Action
@@ -66,6 +71,11 @@ const InteractiveDemo = () => {
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Watch how LuminIQ instantly retrieves answers from your team&#39;s conversations
           </p>
+        </div>
+
+        {/* Diagonal cut divider after title */}
+        <div className="flex justify-center mb-12">
+          <div className="w-20 h-1 bg-gradient-to-r from-teal-400 via-cyan-500 to-violet-600 transform -rotate-12 opacity-50"></div>
         </div>
 
         <div className="relative">
