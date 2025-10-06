@@ -72,8 +72,30 @@ export const HeroWithMarquee = () => {
               <span className="text-xs font-medium text-slate-500 ml-4">LuminIQ Dashboard</span>
             </div>
 
-            <div className="p-8 lg:p-16 bg-gradient-to-br from-slate-50 via-white to-slate-50/50">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 perspective-1000">
+            <div className="relative p-8 lg:p-16 overflow-hidden">
+              {/* Stylish background with gradients and patterns */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50"></div>
+
+              {/* Animated gradient mesh */}
+              <div className="absolute inset-0 opacity-40">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-blob"></div>
+                <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-cyan-200/30 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+              </div>
+
+              {/* Subtle grid pattern */}
+              <div className="absolute inset-0 opacity-[0.02]" style={{
+                backgroundImage: `
+                  linear-gradient(to right, #94a3b8 1px, transparent 1px),
+                  linear-gradient(to bottom, #94a3b8 1px, transparent 1px)
+                `,
+                backgroundSize: '80px 80px'
+              }}></div>
+
+              {/* Radial gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-radial from-transparent via-white/20 to-white/60"></div>
+
+              <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 perspective-1000">
                 <div className="group relative text-center p-12 rounded-[2.5rem] transition-all duration-700 hover:-translate-y-6 hover:scale-[1.02] cursor-pointer overflow-hidden"
                      style={{ transformStyle: 'preserve-3d' }}>
                   {/* Glassmorphism base with gradient */}
@@ -303,6 +325,30 @@ export const HeroWithMarquee = () => {
 
         .bg-gradient-radial {
           background: radial-gradient(circle, var(--tw-gradient-stops));
+        }
+
+        @keyframes blob {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+        }
+
+        .animate-blob {
+          animation: blob 15s ease-in-out infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
         }
       `}</style>
     </section>
