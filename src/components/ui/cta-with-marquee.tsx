@@ -73,29 +73,71 @@ export const HeroWithMarquee = () => {
             </div>
 
             <div className="p-8 lg:p-16 bg-white">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-lg hover:shadow-blue-100 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                <div className="group relative text-center p-8 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50 rounded-2xl border border-blue-200/60 hover:border-blue-300/80 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+                  {/* Subtle background pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 via-transparent to-cyan-100/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Floating glow effect */}
+                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-150"></div>
+                  
+                  <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/30 group-hover:shadow-xl group-hover:shadow-blue-500/40 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                     <Brain className="w-6 h-6 text-white" />
+                    {/* Icon glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-2xl opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-500"></div>
                   </div>
-                  <h3 className="font-semibold text-slate-900 mb-2">Smart Capture</h3>
-                  <p className="text-sm text-slate-600">Automatically extracts key insights from conversations</p>
+                  
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-900 transition-colors duration-300">Smart Capture</h3>
+                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">Automatically extracts key insights from conversations with AI precision</p>
+                    
+                    {/* Subtle accent line */}
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:w-20"></div>
+                  </div>
                 </div>
 
-                <div className="text-center p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-200 hover:shadow-lg hover:shadow-amber-100 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-orange-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <div className="group relative text-center p-8 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 rounded-2xl border border-amber-200/60 hover:border-amber-300/80 hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+                  {/* Subtle background pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-100/30 via-transparent to-orange-100/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Floating glow effect */}
+                  <div className="absolute -top-4 -left-4 w-24 h-24 bg-amber-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-150"></div>
+                  
+                  <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-amber-600 via-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-amber-500/30 group-hover:shadow-xl group-hover:shadow-amber-500/40 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                     <Zap className="w-6 h-6 text-white" />
+                    {/* Icon glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-400 rounded-2xl opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-500"></div>
                   </div>
-                  <h3 className="font-semibold text-slate-900 mb-2">Instant Recall</h3>
-                  <p className="text-sm text-slate-600">Find any information in seconds with AI search</p>
+                  
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-amber-900 transition-colors duration-300">Instant Recall</h3>
+                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">Find any information in seconds with intelligent AI-powered search</p>
+                    
+                    {/* Subtle accent line */}
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-amber-400 to-orange-400 mx-auto mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:w-20"></div>
+                  </div>
                 </div>
 
-                <div className="text-center p-6 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border border-emerald-200 hover:shadow-lg hover:shadow-emerald-100 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <div className="group relative text-center p-8 bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-50 rounded-2xl border border-emerald-200/60 hover:border-emerald-300/80 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+                  {/* Subtle background pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/30 via-transparent to-teal-100/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Floating glow effect */}
+                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-emerald-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-150"></div>
+                  
+                  <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/30 group-hover:shadow-xl group-hover:shadow-emerald-500/40 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                     <Users className="w-6 h-6 text-white" />
+                    {/* Icon glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-2xl opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-500"></div>
                   </div>
-                  <h3 className="font-semibold text-slate-900 mb-2">Team Sync</h3>
-                  <p className="text-sm text-slate-600">Keep everyone aligned with shared knowledge</p>
+                  
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-900 transition-colors duration-300">Team Sync</h3>
+                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">Keep everyone aligned with shared knowledge and real-time insights</p>
+                    
+                    {/* Subtle accent line */}
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:w-20"></div>
+                  </div>
                 </div>
               </div>
             </div>
