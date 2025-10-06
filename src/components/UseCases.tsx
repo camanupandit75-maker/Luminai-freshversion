@@ -186,20 +186,59 @@ const UseCases = () => {
         </div>
 
         <div className="mt-20 text-center">
-          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-xl p-12 lg:p-16 shadow-lg">
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-5">
-              Ready to unlock your team&#39;s knowledge?
-            </h3>
-            <p className="text-xl text-blue-100 mb-10 max-w-xl mx-auto">
-              Join innovative R&D teams already using LuminIQ to innovate faster
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="px-8 py-4 bg-white hover:bg-blue-50 hover:shadow-lg hover:scale-105 text-purple-900 rounded-xl font-semibold transition-all duration-300 shadow-sm">
-                Start Free Trial
-              </button>
-              <button className="px-8 py-4 bg-transparent border border-white hover:bg-white/10 hover:scale-105 text-white rounded-xl font-semibold transition-all duration-300">
-                Schedule Demo
-              </button>
+          <div className="relative overflow-hidden rounded-[2.5rem] p-12 lg:p-16 group cursor-default">
+            {/* Multi-layered gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-transparent to-emerald-100/50"></div>
+
+            {/* Animated gradient orbs */}
+            <div className="absolute -top-20 -right-20 w-80 h-80 bg-gradient-radial from-blue-300/30 via-cyan-300/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-gradient-radial from-emerald-300/30 via-teal-300/10 to-transparent rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000 delay-300"></div>
+
+            {/* Subtle border */}
+            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-blue-200/50 via-cyan-200/50 to-teal-200/50 opacity-50"></div>
+            <div className="absolute inset-[1px] rounded-[2.5rem] bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl"></div>
+
+            {/* Floating sparkles */}
+            <div className="absolute top-8 right-12 w-2 h-2 bg-cyan-400 rounded-full blur-[1px] animate-pulse"></div>
+            <div className="absolute bottom-12 left-16 w-2 h-2 bg-blue-400 rounded-full blur-[1px] animate-pulse delay-500"></div>
+            <div className="absolute top-16 left-1/3 w-1.5 h-1.5 bg-teal-400 rounded-full blur-[1px] animate-pulse delay-1000"></div>
+
+            <div className="relative z-10">
+              <h3 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent mb-5">
+                Ready to unlock your team&#39;s knowledge?
+              </h3>
+              <p className="text-xl text-slate-600 mb-10 max-w-xl mx-auto">
+                Join innovative R&D teams already using LuminIQ to innovate faster
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button className="group/btn relative px-8 py-4 rounded-xl font-semibold transition-all duration-500 overflow-hidden">
+                  {/* Primary button gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 transition-transform duration-500 group-hover/btn:scale-105"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
+                  </div>
+
+                  <span className="relative z-10 text-white font-semibold">Start Free Trial</span>
+
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 -z-10"></div>
+                </button>
+
+                <button className="group/btn relative px-8 py-4 rounded-xl font-semibold transition-all duration-500 overflow-hidden">
+                  {/* Secondary button border and background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 rounded-xl"></div>
+                  <div className="absolute inset-[2px] bg-white rounded-[0.6rem] group-hover/btn:bg-gradient-to-r group-hover/btn:from-blue-50 group-hover/btn:via-cyan-50 group-hover/btn:to-teal-50 transition-all duration-500"></div>
+
+                  <span className="relative z-10 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent font-semibold">Schedule Demo</span>
+
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r from-blue-400/50 via-cyan-400/50 to-teal-400/50 -z-10"></div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
