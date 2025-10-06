@@ -72,83 +72,137 @@ export const HeroWithMarquee = () => {
               <span className="text-xs font-medium text-slate-500 ml-4">LuminIQ Dashboard</span>
             </div>
 
-            <div className="p-8 lg:p-16 bg-white">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                <div className="group relative text-center p-10 bg-gradient-to-br from-blue-50 via-white to-cyan-50 rounded-3xl border-2 border-blue-400/60 hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-500 hover:-translate-y-4 hover:scale-105 overflow-hidden backdrop-blur-sm">
-                  {/* Animated background gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-cyan-400/5 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  
-                  {/* Multiple floating glow effects */}
-                  <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-400/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-150"></div>
-                  <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-cyan-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
-                  
-                  {/* Animated border glow */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 opacity-0 group-hover:opacity-20 blur-sm transition-all duration-500"></div>
-                  
-                  <div className="relative z-10 w-20 h-20 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-blue-500/50 group-hover:shadow-3xl group-hover:shadow-blue-500/70 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700">
-                    <Brain className="w-6 h-6 text-white" />
-                    {/* Pulsing icon glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-300 to-cyan-300 rounded-3xl opacity-0 group-hover:opacity-50 blur-md transition-all duration-700 animate-pulse"></div>
+            <div className="p-8 lg:p-16 bg-gradient-to-br from-slate-50 via-white to-slate-50/50">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 perspective-1000">
+                <div className="group relative text-center p-12 rounded-[2.5rem] transition-all duration-700 hover:-translate-y-6 hover:scale-[1.02] cursor-pointer overflow-hidden"
+                     style={{ transformStyle: 'preserve-3d' }}>
+                  {/* Glassmorphism base with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-blue-600/10 backdrop-blur-3xl rounded-[2.5rem]"></div>
+
+                  {/* Multi-layered border effect */}
+                  <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-blue-400 via-cyan-400 to-blue-500 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                  <div className="absolute inset-[1px] rounded-[2.5rem] bg-white"></div>
+                  <div className="absolute inset-[2px] rounded-[2.5rem] bg-gradient-to-br from-blue-50/80 via-white to-cyan-50/80 backdrop-blur-sm"></div>
+
+                  {/* Animated gradient orbs */}
+                  <div className="absolute -top-12 -right-12 w-48 h-48 bg-gradient-radial from-blue-400/40 via-cyan-400/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-150 animate-float"></div>
+                  <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-radial from-cyan-400/30 via-blue-400/15 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-150 group-hover:scale-150 animate-float-delayed"></div>
+
+                  {/* Shimmering edge highlight */}
+                  <div className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-blue-400/50 via-transparent to-cyan-400/50 blur-sm animate-shimmer"></div>
                   </div>
-                  
+
+                  {/* 3D floating icon container */}
+                  <div className="relative z-10 w-24 h-24 mx-auto mb-8 transition-all duration-700 group-hover:scale-110 group-hover:rotate-12"
+                       style={{ transform: 'translateZ(20px)' }}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-600 rounded-[1.75rem] shadow-2xl shadow-blue-500/60 group-hover:shadow-[0_20px_80px_rgba(59,130,246,0.6)] transition-all duration-700"></div>
+                    <div className="absolute inset-[2px] bg-gradient-to-br from-blue-500 via-blue-400 to-cyan-500 rounded-[1.7rem] opacity-80"></div>
+                    <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-white/20 to-transparent"></div>
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Brain className="w-8 h-8 text-white drop-shadow-lg relative z-10" />
+                      <div className="absolute inset-0 bg-blue-400 rounded-[1.75rem] opacity-0 group-hover:opacity-30 blur-lg transition-all duration-700 animate-pulse"></div>
+                    </div>
+                  </div>
+
                   <div className="relative z-10">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-900 transition-colors duration-300">Smart Capture</h3>
-                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-800 transition-colors duration-300 text-lg">Automatically extracts key insights from conversations with AI precision</p>
-                    
-                    {/* Animated accent line */}
-                    <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mt-6 opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:w-32 rounded-full shadow-lg shadow-blue-500/50"></div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 bg-clip-text text-transparent mb-5 group-hover:scale-105 transition-transform duration-500">Smart Capture</h3>
+                    <p className="text-slate-600 leading-relaxed text-lg group-hover:text-slate-800 transition-colors duration-300">Automatically extracts key insights from conversations with AI precision</p>
+
+                    {/* Animated floating accent */}
+                    <div className="mt-8 h-1.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-full shadow-lg shadow-blue-500/50 group-hover:shadow-[0_4px_20px_rgba(59,130,246,0.8)]"></div>
+
+                    {/* Corner sparkles */}
+                    <div className="absolute top-8 right-8 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-150 blur-[1px]"></div>
+                    <div className="absolute bottom-8 left-8 w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 group-hover:scale-150 blur-[1px]"></div>
                   </div>
                 </div>
 
-                <div className="group relative text-center p-10 bg-gradient-to-br from-amber-50 via-white to-orange-50 rounded-3xl border-2 border-amber-400/60 hover:border-amber-500 hover:shadow-2xl hover:shadow-amber-500/40 transition-all duration-500 hover:-translate-y-4 hover:scale-105 overflow-hidden backdrop-blur-sm">
-                  {/* Animated background gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-orange-400/5 to-amber-500/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  
-                  {/* Multiple floating glow effects */}
-                  <div className="absolute -top-6 -left-6 w-32 h-32 bg-amber-400/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-150"></div>
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-orange-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
-                  
-                  {/* Animated border glow */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 opacity-0 group-hover:opacity-20 blur-sm transition-all duration-500"></div>
-                  
-                  <div className="relative z-10 w-20 h-20 bg-gradient-to-br from-amber-600 via-amber-500 to-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-amber-500/50 group-hover:shadow-3xl group-hover:shadow-amber-500/70 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700">
-                    <Zap className="w-6 h-6 text-white" />
-                    {/* Pulsing icon glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-300 to-orange-300 rounded-3xl opacity-0 group-hover:opacity-50 blur-md transition-all duration-700 animate-pulse"></div>
+                <div className="group relative text-center p-12 rounded-[2.5rem] transition-all duration-700 hover:-translate-y-6 hover:scale-[1.02] cursor-pointer overflow-hidden"
+                     style={{ transformStyle: 'preserve-3d' }}>
+                  {/* Glassmorphism base with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-amber-600/10 backdrop-blur-3xl rounded-[2.5rem]"></div>
+
+                  {/* Multi-layered border effect */}
+                  <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-amber-400 via-orange-400 to-amber-500 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                  <div className="absolute inset-[1px] rounded-[2.5rem] bg-white"></div>
+                  <div className="absolute inset-[2px] rounded-[2.5rem] bg-gradient-to-br from-amber-50/80 via-white to-orange-50/80 backdrop-blur-sm"></div>
+
+                  {/* Animated gradient orbs */}
+                  <div className="absolute -top-12 -left-12 w-48 h-48 bg-gradient-radial from-amber-400/40 via-orange-400/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-150 animate-float"></div>
+                  <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-gradient-radial from-orange-400/30 via-amber-400/15 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-150 group-hover:scale-150 animate-float-delayed"></div>
+
+                  {/* Shimmering edge highlight */}
+                  <div className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-amber-400/50 via-transparent to-orange-400/50 blur-sm animate-shimmer"></div>
                   </div>
-                  
+
+                  {/* 3D floating icon container */}
+                  <div className="relative z-10 w-24 h-24 mx-auto mb-8 transition-all duration-700 group-hover:scale-110 group-hover:rotate-12"
+                       style={{ transform: 'translateZ(20px)' }}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-600 via-amber-500 to-orange-600 rounded-[1.75rem] shadow-2xl shadow-amber-500/60 group-hover:shadow-[0_20px_80px_rgba(245,158,11,0.6)] transition-all duration-700"></div>
+                    <div className="absolute inset-[2px] bg-gradient-to-br from-amber-500 via-amber-400 to-orange-500 rounded-[1.7rem] opacity-80"></div>
+                    <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-white/20 to-transparent"></div>
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Zap className="w-8 h-8 text-white drop-shadow-lg relative z-10" />
+                      <div className="absolute inset-0 bg-amber-400 rounded-[1.75rem] opacity-0 group-hover:opacity-30 blur-lg transition-all duration-700 animate-pulse"></div>
+                    </div>
+                  </div>
+
                   <div className="relative z-10">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-amber-900 transition-colors duration-300">Instant Recall</h3>
-                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-800 transition-colors duration-300 text-lg">Find any information in seconds with intelligent AI-powered search</p>
-                    
-                    {/* Animated accent line */}
-                    <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-orange-500 mx-auto mt-6 opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:w-32 rounded-full shadow-lg shadow-amber-500/50"></div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-br from-slate-900 via-amber-900 to-slate-800 bg-clip-text text-transparent mb-5 group-hover:scale-105 transition-transform duration-500">Instant Recall</h3>
+                    <p className="text-slate-600 leading-relaxed text-lg group-hover:text-slate-800 transition-colors duration-300">Find any information in seconds with intelligent AI-powered search</p>
+
+                    {/* Animated floating accent */}
+                    <div className="mt-8 h-1.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-full shadow-lg shadow-amber-500/50 group-hover:shadow-[0_4px_20px_rgba(245,158,11,0.8)]"></div>
+
+                    {/* Corner sparkles */}
+                    <div className="absolute top-8 left-8 w-2 h-2 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-150 blur-[1px]"></div>
+                    <div className="absolute bottom-8 right-8 w-2 h-2 bg-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 group-hover:scale-150 blur-[1px]"></div>
                   </div>
                 </div>
 
-                <div className="group relative text-center p-10 bg-gradient-to-br from-emerald-50 via-white to-teal-50 rounded-3xl border-2 border-emerald-400/60 hover:border-emerald-500 hover:shadow-2xl hover:shadow-emerald-500/40 transition-all duration-500 hover:-translate-y-4 hover:scale-105 overflow-hidden backdrop-blur-sm">
-                  {/* Animated background gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 via-teal-400/5 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  
-                  {/* Multiple floating glow effects */}
-                  <div className="absolute -top-6 -right-6 w-32 h-32 bg-emerald-400/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-150"></div>
-                  <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-teal-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
-                  
-                  {/* Animated border glow */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 opacity-0 group-hover:opacity-20 blur-sm transition-all duration-500"></div>
-                  
-                  <div className="relative z-10 w-20 h-20 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-emerald-500/50 group-hover:shadow-3xl group-hover:shadow-emerald-500/70 group-hover:scale-125 group-hover:rotate-6 transition-all duration-700">
-                    <Users className="w-6 h-6 text-white" />
-                    {/* Pulsing icon glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-300 to-teal-300 rounded-3xl opacity-0 group-hover:opacity-50 blur-md transition-all duration-700 animate-pulse"></div>
+                <div className="group relative text-center p-12 rounded-[2.5rem] transition-all duration-700 hover:-translate-y-6 hover:scale-[1.02] cursor-pointer overflow-hidden"
+                     style={{ transformStyle: 'preserve-3d' }}>
+                  {/* Glassmorphism base with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-emerald-600/10 backdrop-blur-3xl rounded-[2.5rem]"></div>
+
+                  {/* Multi-layered border effect */}
+                  <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-emerald-400 via-teal-400 to-emerald-500 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                  <div className="absolute inset-[1px] rounded-[2.5rem] bg-white"></div>
+                  <div className="absolute inset-[2px] rounded-[2.5rem] bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80 backdrop-blur-sm"></div>
+
+                  {/* Animated gradient orbs */}
+                  <div className="absolute -top-12 -right-12 w-48 h-48 bg-gradient-radial from-emerald-400/40 via-teal-400/20 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-150 animate-float"></div>
+                  <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-radial from-teal-400/30 via-emerald-400/15 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-1000 delay-150 group-hover:scale-150 animate-float-delayed"></div>
+
+                  {/* Shimmering edge highlight */}
+                  <div className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-emerald-400/50 via-transparent to-teal-400/50 blur-sm animate-shimmer"></div>
                   </div>
-                  
+
+                  {/* 3D floating icon container */}
+                  <div className="relative z-10 w-24 h-24 mx-auto mb-8 transition-all duration-700 group-hover:scale-110 group-hover:rotate-12"
+                       style={{ transform: 'translateZ(20px)' }}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-600 rounded-[1.75rem] shadow-2xl shadow-emerald-500/60 group-hover:shadow-[0_20px_80px_rgba(16,185,129,0.6)] transition-all duration-700"></div>
+                    <div className="absolute inset-[2px] bg-gradient-to-br from-emerald-500 via-emerald-400 to-teal-500 rounded-[1.7rem] opacity-80"></div>
+                    <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-white/20 to-transparent"></div>
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Users className="w-8 h-8 text-white drop-shadow-lg relative z-10" />
+                      <div className="absolute inset-0 bg-emerald-400 rounded-[1.75rem] opacity-0 group-hover:opacity-30 blur-lg transition-all duration-700 animate-pulse"></div>
+                    </div>
+                  </div>
+
                   <div className="relative z-10">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-emerald-900 transition-colors duration-300">Team Sync</h3>
-                    <p className="text-slate-600 leading-relaxed group-hover:text-slate-800 transition-colors duration-300 text-lg">Keep everyone aligned with shared knowledge and real-time insights</p>
-                    
-                    {/* Animated accent line */}
-                    <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 mx-auto mt-6 opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:w-32 rounded-full shadow-lg shadow-emerald-500/50"></div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-800 bg-clip-text text-transparent mb-5 group-hover:scale-105 transition-transform duration-500">Team Sync</h3>
+                    <p className="text-slate-600 leading-relaxed text-lg group-hover:text-slate-800 transition-colors duration-300">Keep everyone aligned with shared knowledge and real-time insights</p>
+
+                    {/* Animated floating accent */}
+                    <div className="mt-8 h-1.5 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-full shadow-lg shadow-emerald-500/50 group-hover:shadow-[0_4px_20px_rgba(16,185,129,0.8)]"></div>
+
+                    {/* Corner sparkles */}
+                    <div className="absolute top-8 right-8 w-2 h-2 bg-emerald-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-150 blur-[1px]"></div>
+                    <div className="absolute bottom-8 left-8 w-2 h-2 bg-teal-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 group-hover:scale-150 blur-[1px]"></div>
                   </div>
                 </div>
               </div>
@@ -202,6 +256,53 @@ export const HeroWithMarquee = () => {
 
         .marquee-content:hover {
           animation-play-state: paused;
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+          }
+          50% {
+            transform: translateY(-20px) scale(1.1);
+          }
+        }
+
+        @keyframes float-delayed {
+          0%, 100% {
+            transform: translateY(0) scale(1) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-15px) scale(1.1) rotate(5deg);
+          }
+        }
+
+        @keyframes shimmer {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+          animation: float-delayed 8s ease-in-out infinite;
+        }
+
+        .animate-shimmer {
+          animation: shimmer 3s linear infinite;
+        }
+
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+
+        .bg-gradient-radial {
+          background: radial-gradient(circle, var(--tw-gradient-stops));
         }
       `}</style>
     </section>
