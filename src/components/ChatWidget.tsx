@@ -86,11 +86,18 @@ const ChatWidget = () => {
 
       {isOpen && (
         <div className="fixed bottom-24 right-6 z-50 w-[380px] animate-slide-up">
-          <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E2E8F0]">
+          <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E2E8F0] relative">
+
+          {/* Decorative stickers */}
+          <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-60 blur-sm animate-pulse"></div>
+          <div className="absolute top-12 -left-2 w-6 h-6 bg-gradient-to-br from-cyan-300 to-blue-300 rounded-full opacity-50"></div>
+          <div className="absolute bottom-20 -right-4 text-2xl animate-bounce" style={{ animationDuration: '3s' }}>✨</div>
+
           <div className="bg-slate-50 border-b border-[#E2E8F0] px-6 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                <span className="text-xl">🔍</span>
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-md relative">
+                <Sparkles className="w-5 h-5 text-white" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
               </div>
               <div>
                 <h3 className="text-slate-900 font-bold">Ask LuminIQ</h3>
@@ -102,16 +109,23 @@ const ChatWidget = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-white h-[400px] overflow-y-auto space-y-3">
+          <div className="p-4 bg-white h-[400px] overflow-y-auto space-y-3 relative">
+            {/* Floating decorative elements */}
+            <div className="absolute top-4 right-4 text-lg opacity-30 animate-pulse" style={{ animationDuration: '2s' }}>💡</div>
+            <div className="absolute bottom-16 left-4 text-lg opacity-20 animate-bounce" style={{ animationDuration: '4s' }}>⚡</div>
+
             {displayedMessages.map((message, index) => (
               <div
                 key={index}
-                className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up`}
+                className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up relative`}
               >
+                {message.type === 'bot' && index === 0 && (
+                  <div className="absolute -left-2 -top-2 text-xl animate-bounce" style={{ animationDuration: '2s' }}>👋</div>
+                )}
                 <div
                   className={`max-w-[85%] rounded-xl px-4 py-3 ${
                     message.type === 'user'
-                      ? 'bg-slate-900 text-white'
+                      ? 'bg-slate-900 text-white shadow-sm'
                       : 'bg-slate-50 text-slate-800 border border-[#E2E8F0]'
                   }`}
                 >
