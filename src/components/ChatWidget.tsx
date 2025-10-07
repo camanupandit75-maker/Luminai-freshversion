@@ -1,28 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { MessageCircle, X, Send, Sparkles, Zap, Lightbulb, Star, TrendingUp } from 'lucide-react';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [cursorDistance, setCursorDistance] = useState(1000);
-  const orbRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (orbRef.current) {
-        const rect = orbRef.current.getBoundingClientRect();
-        const orbCenterX = rect.left + rect.width / 2;
-        const orbCenterY = rect.top + rect.height / 2;
-        const distance = Math.sqrt(
-          Math.pow(e.clientX - orbCenterX, 2) + Math.pow(e.clientY - orbCenterY, 2)
-        );
-        setCursorDistance(distance);
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const conversation = [
     {
@@ -57,19 +38,11 @@ const ChatWidget = () => {
 
   const displayedMessages = conversation.slice(0, currentStep + 1);
 
-  const isNearCursor = cursorDistance < 200;
-  const proximityScale = isNearCursor ? 1 + (200 - cursorDistance) / 200 * 0.15 : 1;
-  const glowIntensity = isNearCursor ? Math.min((200 - cursorDistance) / 100, 1) : 0.3;
-
-  // Breathing animation
-  const breathingScale = 1 + Math.sin(Date.now() * 0.001) * 0.05;
-
   return (
     <>
       {/* Particle ring effect */}
 
       <button
-        ref={orbRef}
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-xl transition-all duration-200 flex items-center justify-center shadow-lg ${
           isOpen
