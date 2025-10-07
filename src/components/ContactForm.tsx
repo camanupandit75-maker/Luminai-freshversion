@@ -87,12 +87,24 @@ const ContactForm = () => {
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-cyan-500/20 to-teal-500/20 rounded-[2.5rem] blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
 
-          <div className="relative bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 shadow-2xl border border-slate-200/50">
+          <div className="relative bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 shadow-2xl border border-slate-200/50 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-cyan-50/50 rounded-[2.5rem]"></div>
+
+            {/* Floating decorative elements */}
+            <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-blue-400/20 via-cyan-400/10 to-transparent rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-gradient-to-br from-cyan-400/20 via-teal-400/10 to-transparent rounded-full blur-2xl"></div>
 
             <div className="absolute top-8 right-12 w-2 h-2 bg-cyan-400 rounded-full blur-[1px] animate-pulse"></div>
             <div className="absolute bottom-12 left-16 w-2 h-2 bg-blue-400 rounded-full blur-[1px] animate-pulse delay-500"></div>
             <div className="absolute top-16 left-1/3 w-1.5 h-1.5 bg-teal-400 rounded-full blur-[1px] animate-pulse delay-1000"></div>
+
+            {/* Floating icon stickers */}
+            <div className="absolute top-6 -right-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center animate-bounce border border-blue-100" style={{ animationDuration: '3s' }}>
+              <Mail className="w-5 h-5 text-blue-500" />
+            </div>
+            <div className="absolute bottom-20 -left-4 w-9 h-9 bg-white rounded-lg shadow-md flex items-center justify-center animate-bounce border border-cyan-100" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}>
+              <MessageSquare className="w-4 h-4 text-cyan-500" />
+            </div>
 
             <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
               <div className="space-y-6">
