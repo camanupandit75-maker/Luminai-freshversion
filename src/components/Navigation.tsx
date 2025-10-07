@@ -32,7 +32,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <img src="/generated-image.png" alt="LuminIQ" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
+            <img src="/generated-image.png" alt="LuminIQ" className="h-10 w-auto transition-transform duration-300 group-hover:scale-105" style={{mixBlendMode: 'multiply', filter: 'brightness(1.2)'}} />
             <span className="text-cyan-400">🔍</span>
           </div>
 
