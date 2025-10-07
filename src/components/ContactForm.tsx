@@ -16,23 +16,29 @@ const ContactForm = () => {
     setErrorMessage('');
 
     try {
-      const subject = encodeURIComponent(`Contact Form Message from ${formData.name}`);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      );
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`;
 
-      const mailtoLink = `mailto:luminiq@zohomail.in?subject=${subject}&body=${body}`;
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      window.location.href = mailtoLink;
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
 
       setTimeout(() => {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-
-        setTimeout(() => {
-          setStatus('idle');
-        }, 5000);
-      }, 500);
+        setStatus('idle');
+      }, 5000);
     } catch (error) {
       setStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
