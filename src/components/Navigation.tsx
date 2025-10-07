@@ -13,7 +13,7 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Product', 'How It Works', 'Pricing', 'Demo', 'FAQ'];
+  const navLinks = ['Product', 'How It Works', 'Pricing', 'Demo', 'Contact Us'];
 
   const scrollToSection = (section: string) => {
     const element = document.getElementById(section.toLowerCase().replace(/\s+/g, '-'));

@@ -4,6 +4,7 @@ import { HeroWithMarquee } from './components/ui/cta-with-marquee';
 import HowItWorks from './components/HowItWorks';
 import InteractiveDemo from './components/InteractiveDemo';
 import UseCases from './components/UseCases';
+import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
 
@@ -22,6 +23,7 @@ function App() {
         <HowItWorks />
         <InteractiveDemo />
         <UseCases />
+        <ContactForm />
       </main>
       <Footer />
       <ChatWidget />
