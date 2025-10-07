@@ -1,4 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -36,28 +37,29 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const formData = new FormData();
-    formData.append("access_key", "a3e25f96-bf44-4fd8-b8bd-8e8b7c5e4e8c");
-    formData.append("subject", `New Contact Form Message from ${name}`);
-    formData.append("from_name", "LuminIQ Contact Form");
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("message", message);
-    formData.append("to", "luminiq@zohomail.in");
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    const web3FormsResponse = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
+    const { data, error } = await supabase
+      .from("contact_submissions")
+      .insert([
+        {
+          name,
+          email,
+          message,
+          status: "new",
+        },
+      ])
+      .select()
+      .single();
 
-    const responseData = await web3FormsResponse.json();
-
-    if (!web3FormsResponse.ok || !responseData.success) {
-      console.error("Web3Forms API Error:", responseData);
+    if (error) {
+      console.error("Database error:", error);
       return new Response(
         JSON.stringify({
-          error: "Failed to send email. Please try again later.",
-          details: responseData
+          error: "Failed to save your message. Please try again later.",
+          details: error.message
         }),
         {
           status: 500,
@@ -69,12 +71,12 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    console.log("Email sent successfully:", responseData);
+    console.log("Contact submission saved:", data);
 
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Email sent successfully"
+        message: "Message received successfully! We'll get back to you soon."
       }),
       {
         status: 200,
