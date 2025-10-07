@@ -89,8 +89,9 @@ const ChatWidget = () => {
           <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E2E8F0]">
           <div className="bg-slate-50 border-b border-[#E2E8F0] px-6 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img src="/generated-image.png" alt="LuminIQ" className="h-8 w-auto" style={{mixBlendMode: 'darken'}} />
-              <span className="text-cyan-400">🔍</span>
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                <span className="text-xl">🔍</span>
+              </div>
               <div>
                 <h3 className="text-slate-900 font-bold">Ask LuminIQ</h3>
                 <div className="flex items-center space-x-1">

@@ -4,8 +4,12 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <img src="/generated-image.png" alt="LuminIQ" className="h-8 w-auto transition-transform duration-300 group-hover:scale-105" style={{mixBlendMode: 'multiply', filter: 'brightness(1.2)'}} />
-            <span className="text-cyan-400">🔍</span>
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <span className="text-2xl">🔍</span>
+            </div>
+            <span className="text-lg font-bold text-white">
+              Lumin<span className="text-white">IQ</span>
+            </span>
           </div>
 
           <div className="flex items-center space-x-6 text-sm text-slate-400">
