@@ -125,7 +125,7 @@ Deno.serve(async (req: Request) => {
 
         const { data: emailData, error: emailError } = await resend.emails.send({
           from: "LuminIQ Contact Form <onboarding@resend.dev>",
-          to: ["camanupandit75@gmail.com"],
+          to: ["camanupandit75@gmail.com", "luminiq@zohomail.in"],
           reply_to: email,
           subject: `New Contact Form Message from ${name}`,
           html: emailHtml,
