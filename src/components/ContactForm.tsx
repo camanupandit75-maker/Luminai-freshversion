@@ -87,23 +87,29 @@ const ContactForm = () => {
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-cyan-500/20 to-teal-500/20 rounded-[2.5rem] blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
 
-          <div className="relative bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 shadow-2xl border border-slate-200/50 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-cyan-50/50 rounded-[2.5rem]"></div>
+          <div className="relative bg-white/95 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 shadow-2xl border-2 border-slate-200/80 overflow-visible">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-cyan-50/80 rounded-[2.5rem]"></div>
 
-            {/* Floating decorative elements */}
-            <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-blue-400/20 via-cyan-400/10 to-transparent rounded-full blur-2xl"></div>
-            <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-gradient-to-br from-cyan-400/20 via-teal-400/10 to-transparent rounded-full blur-2xl"></div>
+            {/* Enhanced floating decorative elements */}
+            <div className="absolute -top-16 -right-16 w-56 h-56 bg-gradient-to-br from-blue-400/40 via-cyan-400/25 to-transparent rounded-full blur-2xl animate-float" style={{ animationDuration: '8s' }}></div>
+            <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-gradient-to-br from-cyan-400/35 via-teal-400/20 to-transparent rounded-full blur-2xl animate-float" style={{ animationDuration: '10s', animationDelay: '2s' }}></div>
 
-            <div className="absolute top-8 right-12 w-2 h-2 bg-cyan-400 rounded-full blur-[1px] animate-pulse"></div>
-            <div className="absolute bottom-12 left-16 w-2 h-2 bg-blue-400 rounded-full blur-[1px] animate-pulse delay-500"></div>
-            <div className="absolute top-16 left-1/3 w-1.5 h-1.5 bg-teal-400 rounded-full blur-[1px] animate-pulse delay-1000"></div>
+            <div className="absolute top-8 right-12 w-3 h-3 bg-cyan-400 rounded-full blur-[1px] animate-pulse shadow-lg shadow-cyan-400/50"></div>
+            <div className="absolute bottom-12 left-16 w-3 h-3 bg-blue-400 rounded-full blur-[1px] animate-pulse delay-500 shadow-lg shadow-blue-400/50"></div>
+            <div className="absolute top-16 left-1/3 w-2.5 h-2.5 bg-teal-400 rounded-full blur-[1px] animate-pulse delay-1000 shadow-lg shadow-teal-400/50"></div>
 
-            {/* Floating icon stickers */}
-            <div className="absolute top-6 -right-4 w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center animate-bounce border border-blue-100" style={{ animationDuration: '3s' }}>
-              <Mail className="w-5 h-5 text-blue-500" />
+            {/* Enhanced floating icon stickers */}
+            <div className="absolute -top-5 -right-5 w-14 h-14 bg-gradient-to-br from-white via-blue-50 to-white rounded-2xl shadow-2xl flex items-center justify-center animate-bounce border-2 border-blue-200/60 hover:scale-110 transition-transform cursor-pointer" style={{ animationDuration: '3s' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-2xl"></div>
+              <Mail className="w-6 h-6 text-blue-600 relative z-10" />
             </div>
-            <div className="absolute bottom-20 -left-4 w-9 h-9 bg-white rounded-lg shadow-md flex items-center justify-center animate-bounce border border-cyan-100" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}>
-              <MessageSquare className="w-4 h-4 text-cyan-500" />
+            <div className="absolute -bottom-4 -left-5 w-12 h-12 bg-gradient-to-br from-white via-cyan-50 to-white rounded-xl shadow-xl flex items-center justify-center animate-bounce border-2 border-cyan-200/60 hover:scale-110 transition-transform cursor-pointer" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-teal-400/20 rounded-xl"></div>
+              <MessageSquare className="w-5 h-5 text-cyan-600 relative z-10" />
+            </div>
+            <div className="absolute top-1/3 -right-6 w-10 h-10 bg-gradient-to-br from-white via-teal-50 to-white rounded-lg shadow-lg flex items-center justify-center animate-bounce border-2 border-teal-200/60 hover:scale-110 transition-transform cursor-pointer" style={{ animationDuration: '2.8s', animationDelay: '1s' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-400/20 to-blue-400/20 rounded-lg"></div>
+              <Send className="w-4 h-4 text-teal-600 relative z-10" />
             </div>
 
             <form onSubmit={handleSubmit} className="relative z-10 space-y-6">

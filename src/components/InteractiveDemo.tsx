@@ -93,9 +93,22 @@ const InteractiveDemo = () => {
         </div>
 
         <div className="relative group">
-          <div className="relative bg-white rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200/50">
+          {/* Enhanced glow effect around demo */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-teal-500/20 rounded-[2.5rem] blur-3xl opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
+
+          {/* Floating decorative shapes around demo */}
+          <div className="absolute -top-8 -left-8 w-16 h-16 border-2 border-blue-300/50 rounded-xl rotate-12 animate-float" style={{ animationDuration: '6s' }}></div>
+          <div className="absolute -top-6 -right-10 w-12 h-12 border-2 border-cyan-300/50 rounded-full animate-float" style={{ animationDuration: '7s', animationDelay: '1s' }}></div>
+          <div className="absolute -bottom-8 -right-8 w-14 h-14 border-2 border-teal-300/50 rounded-lg -rotate-6 animate-float" style={{ animationDuration: '8s', animationDelay: '2s' }}></div>
+          <div className="absolute -bottom-6 -left-10 w-10 h-10 border-2 border-blue-300/50 rounded-full animate-float" style={{ animationDuration: '5s', animationDelay: '1.5s' }}></div>
+
+          <div className="relative bg-white/95 rounded-[2rem] overflow-hidden shadow-2xl border-2 border-slate-200/70">
             {/* Glassmorphism effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-cyan-50/50 opacity-60"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/70 via-white to-cyan-50/70 opacity-80"></div>
+
+            {/* Floating gradient orbs inside */}
+            <div className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-br from-blue-400/30 via-cyan-400/20 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+            <div className="absolute bottom-10 left-10 w-40 h-40 bg-gradient-to-tr from-cyan-400/25 via-teal-400/15 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
 
             {/* Header */}
             <div className="relative bg-gradient-to-r from-blue-50/80 via-cyan-50/80 to-teal-50/80 backdrop-blur-sm border-b border-slate-200/50 px-6 py-4 flex items-center justify-between">
