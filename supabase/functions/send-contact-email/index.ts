@@ -1,5 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { Resend } from "npm:resend@3";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -73,10 +74,12 @@ Deno.serve(async (req: Request) => {
 
     console.log("Contact submission saved:", data);
 
-    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    const resendApiKey = "re_4Z2XAhho_oz96h9Lm2cEm1xmoyy4Fe5F6";
 
     if (resendApiKey) {
       try {
+        const resend = new Resend(resendApiKey);
+
         const emailHtml = `
           <!DOCTYPE html>
           <html>
@@ -120,26 +123,18 @@ Deno.serve(async (req: Request) => {
           </html>
         `;
 
-        const resendResponse = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${resendApiKey}`,
-          },
-          body: JSON.stringify({
-            from: "LuminIQ Contact Form <onboarding@resend.dev>",
-            to: ["luminiq@zohomail.in"],
-            reply_to: email,
-            subject: `New Contact Form Message from ${name}`,
-            html: emailHtml,
-          }),
+        const { data: emailData, error: emailError } = await resend.emails.send({
+          from: "LuminIQ Contact Form <onboarding@resend.dev>",
+          to: ["camanupandit75@gmail.com"],
+          reply_to: email,
+          subject: `New Contact Form Message from ${name}`,
+          html: emailHtml,
         });
 
-        if (resendResponse.ok) {
-          console.log("Email sent successfully via Resend");
+        if (emailError) {
+          console.error("Failed to send email via Resend:", emailError);
         } else {
-          const errorData = await resendResponse.json();
-          console.error("Failed to send email via Resend:", errorData);
+          console.log("Email sent successfully via Resend:", emailData);
         }
       } catch (emailError) {
         console.error("Email sending error (non-fatal):", emailError);
