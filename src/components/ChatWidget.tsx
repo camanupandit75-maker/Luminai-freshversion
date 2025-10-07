@@ -89,8 +89,8 @@ const ChatWidget = () => {
           <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#E2E8F0]">
           <div className="bg-slate-50 border-b border-[#E2E8F0] px-6 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center">
+                <img src="/Screenshot 2025-10-07 at 1.41.34 PM.png" alt="LuminIQ Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h3 className="text-slate-900 font-bold">Ask LuminIQ</h3>

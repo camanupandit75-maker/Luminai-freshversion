@@ -32,8 +32,8 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-400 via-cyan-400 via-blue-500 to-purple-600 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <span className="text-white font-bold text-lg">L</span>
+            <div className="w-10 h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <img src="/Screenshot 2025-10-07 at 1.41.34 PM.png" alt="LuminIQ Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-2xl font-bold text-white">
               Lumin<span className="text-white">IQ</span><span className="text-cyan-400">🔍</span>
