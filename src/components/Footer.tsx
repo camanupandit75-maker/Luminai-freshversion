@@ -4,12 +4,8 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <div className="w-10 h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
-              <img src="/Screenshot 2025-10-07 at 1.41.34 PM.png" alt="LuminIQ Logo" className="w-full h-full object-contain" />
-            </div>
-            <span className="text-lg font-bold text-white">
-              Lumin<span className="text-white">IQ</span><span className="text-cyan-400">🔍</span>
-            </span>
+            <img src="/generated-image.png" alt="LuminIQ" className="h-8 w-auto transition-transform duration-300 group-hover:scale-105" />
+            <span className="text-cyan-400">🔍</span>
           </div>
 
           <div className="flex items-center space-x-6 text-sm text-slate-400">
