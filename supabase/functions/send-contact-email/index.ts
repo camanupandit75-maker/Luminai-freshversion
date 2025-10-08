@@ -44,23 +44,20 @@ Deno.serve(async (req: Request) => {
 
     const { data, error } = await supabase
       .from("contact_submissions")
-      .insert([
-        {
-          name,
-          email,
-          message,
-          status: "new",
-        },
-      ])
+      .insert([{
+        name,
+        email,
+        message,
+        status: "new",
+      }])
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error("Database error:", error);
       return new Response(
         JSON.stringify({
           error: "Failed to save your message. Please try again later.",
-          details: error.message
         }),
         {
           status: 500,
@@ -146,7 +143,7 @@ Deno.serve(async (req: Request) => {
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Message received successfully! We'll get back to you soon."
+        message: "Message received successfully! We'll get back to you soon.",
       }),
       {
         status: 200,
@@ -160,8 +157,7 @@ Deno.serve(async (req: Request) => {
     console.error("Error:", error);
     return new Response(
       JSON.stringify({
-        error: "An unexpected error occurred",
-        details: error instanceof Error ? error.message : "Unknown error"
+        error: "An unexpected error occurred. Please try again.",
       }),
       {
         status: 500,
