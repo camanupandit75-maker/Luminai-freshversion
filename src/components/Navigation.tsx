@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, profile, signOut } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +26,11 @@ const Navigation = () => {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setIsMobileMenuOpen(false);
     }
+  };
+
+  const openChat = () => {
+    window.dispatchEvent(new CustomEvent('openChat'));
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -41,7 +51,7 @@ const Navigation = () => {
           </div>
 
           <div className="hidden lg:flex items-center space-x-1">
-            {navLinks.map((link) => (
+            {location.pathname === '/' && navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
@@ -53,9 +63,45 @@ const Navigation = () => {
                 </span>
               </button>
             ))}
-            <button className="ml-4 px-6 py-2.5 text-sm font-semibold text-slate-900 bg-white hover:bg-slate-100 hover:shadow-md hover:scale-105 transition-all duration-300 rounded-lg shadow-sm">
-              Get Started
-            </button>
+            
+            {user ? (
+              <>
+                <button 
+                  onClick={() => navigate('/dashboard')}
+                  className="ml-4 px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                >
+                  Dashboard
+                </button>
+                <button 
+                  onClick={() => navigate('/profile')}
+                  className="flex items-center space-x-2 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                >
+                  <User className="w-4 h-4" />
+                  <span>{profile?.full_name?.split(' ')[0]}</span>
+                </button>
+                <button 
+                  onClick={signOut}
+                  className="flex items-center space-x-2 px-4 py-2.5 text-sm font-semibold text-red-400 hover:text-red-300 transition-colors duration-300"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </>
+            ) : (
+              <>
+                <button 
+                  onClick={() => navigate('/login')}
+                  className="ml-4 px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                >
+                  Sign In
+                </button>
+                <button 
+                  onClick={openChat}
+                  className="px-6 py-2.5 text-sm font-semibold text-slate-900 bg-white hover:bg-slate-100 hover:shadow-md hover:scale-105 transition-all duration-300 rounded-lg shadow-sm"
+                >
+                  Get Started
+                </button>
+              </>
+            )}
           </div>
 
           <button
@@ -70,7 +116,7 @@ const Navigation = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-slate-900 border-t border-slate-800 shadow-sm">
           <div className="px-6 py-4 space-y-1">
-            {navLinks.map((link) => (
+            {location.pathname === '/' && navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => scrollToSection(link)}
@@ -79,9 +125,44 @@ const Navigation = () => {
                 {link}
               </button>
             ))}
-            <button className="block w-full mt-2 py-3 px-4 text-slate-900 bg-white hover:bg-slate-100 hover:shadow-md hover:scale-105 transition-all duration-300 text-sm font-semibold rounded-xl text-center shadow-sm">
-              Get Started
-            </button>
+            
+            {user ? (
+              <>
+                <button 
+                  onClick={() => { navigate('/dashboard'); setIsMobileMenuOpen(false); }}
+                  className="block w-full mt-2 py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
+                >
+                  Dashboard
+                </button>
+                <button 
+                  onClick={() => { navigate('/profile'); setIsMobileMenuOpen(false); }}
+                  className="block w-full py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
+                >
+                  Profile
+                </button>
+                <button 
+                  onClick={() => { signOut(); setIsMobileMenuOpen(false); }}
+                  className="block w-full py-3 px-4 text-red-400 hover:text-red-300 hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <button 
+                  onClick={() => { navigate('/login'); setIsMobileMenuOpen(false); }}
+                  className="block w-full mt-2 py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
+                >
+                  Sign In
+                </button>
+                <button 
+                  onClick={openChat}
+                  className="block w-full mt-2 py-3 px-4 text-slate-900 bg-white hover:bg-slate-100 hover:shadow-md hover:scale-105 transition-all duration-300 text-sm font-semibold rounded-xl text-center shadow-sm"
+                >
+                  Get Started
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}

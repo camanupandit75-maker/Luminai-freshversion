@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import { HeroWithMarquee } from './components/ui/cta-with-marquee';
 import HowItWorks from './components/HowItWorks';
-import InteractiveDemo from './components/InteractiveDemo';
+import CombinedDemo from './components/CombinedDemo';
 import UseCases from './components/UseCases';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
@@ -69,7 +69,7 @@ function App() {
         <main className={`transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <HeroWithMarquee />
           <HowItWorks />
-          <InteractiveDemo />
+          <CombinedDemo />
           <UseCases />
           <ContactForm />
         </main>
