@@ -5,6 +5,7 @@ import { LoginPage } from './components/Auth/LoginPage';
 import { AuthCallback } from './components/Auth/AuthCallback';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { ProfilePage } from './components/Profile/ProfilePage';
+import { WaitlistPage } from './components/Waitlist/WaitlistPage';
 import App from './App';
 
 export const AppRoutes = () => {
@@ -31,6 +32,14 @@ export const AppRoutes = () => {
             element={
               <ProtectedRoute>
                 <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/waitlist"
+            element={
+              <ProtectedRoute>
+                <WaitlistPage />
               </ProtectedRoute>
             }
           />
