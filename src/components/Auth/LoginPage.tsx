@@ -40,9 +40,15 @@ export const LoginPage = () => {
     setLoading(true);
     try {
       const { error } = await signInWithGoogle();
-      if (error) throw error;
+      if (error) {
+        console.error('Google Sign-In Error:', error);
+        if (error.message.includes('provider') || error.message.includes('not enabled')) {
+          throw new Error('Google Sign-In is not configured. Please enable the Google provider in your Supabase dashboard under Authentication > Providers.');
+        }
+        throw error;
+      }
     } catch (err: any) {
-      setError(err.message || 'An error occurred');
+      setError(err.message || 'Failed to sign in with Google. Please try again or use email/password.');
       setLoading(false);
     }
   };

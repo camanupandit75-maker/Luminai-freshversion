@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react';
 import { Menu, X, User, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { WaitlistModal } from './WaitlistModal';
+import { Toast } from './Toast';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,14 +22,24 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Product', 'How It Works', 'Pricing', 'Demo', 'Contact Us'];
+  const navLinks = ['Join the Waitlist', 'Product', 'How It Works', 'Pricing', 'Demo', 'Contact Us'];
 
   const scrollToSection = (section: string) => {
+    if (section === 'Join the Waitlist') {
+      setIsWaitlistModalOpen(true);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
     const element = document.getElementById(section.toLowerCase().replace(/\s+/g, '-'));
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setIsMobileMenuOpen(false);
     }
+  };
+
+  const handleWaitlistSuccess = () => {
+    setShowToast(true);
   };
 
   const openChat = () => {
@@ -34,6 +48,17 @@ const Navigation = () => {
   };
 
   return (
+    <>
+    <WaitlistModal
+      isOpen={isWaitlistModalOpen}
+      onClose={() => setIsWaitlistModalOpen(false)}
+      onSuccess={handleWaitlistSuccess}
+    />
+    <Toast
+      message="Stay tuned! We'll get back to you soon."
+      isVisible={showToast}
+      onClose={() => setShowToast(false)}
+    />
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-800' : 'bg-slate-900 border-b border-slate-800'
@@ -167,6 +192,7 @@ const Navigation = () => {
         </div>
       )}
     </nav>
+    </>
   );
 };
 
