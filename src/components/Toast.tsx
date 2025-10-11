@@ -22,7 +22,7 @@ export const Toast = ({ message, isVisible, onClose, duration = 4000 }: ToastPro
   if (!isVisible) return null;
 
   return (
-    <div className="fixed top-6 right-6 z-50 animate-slideInRight">
+    <div className="fixed top-24 right-6 z-50 animate-slideInRight">
       <div className="bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden min-w-[320px] max-w-md">
         <div className="flex items-start p-4 space-x-3">
           <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
