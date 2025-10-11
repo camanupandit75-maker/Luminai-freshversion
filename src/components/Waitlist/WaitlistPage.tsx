@@ -137,13 +137,6 @@ export const WaitlistPage = () => {
                 <span>Dashboard</span>
               </button>
               <button
-                onClick={() => window.location.href = '/waitlist'}
-                className="flex items-center space-x-2 px-4 py-2 bg-slate-100 text-slate-900 rounded-lg transition-colors"
-              >
-                <Users className="w-5 h-5" />
-                <span>Waitlist</span>
-              </button>
-              <button
                 onClick={() => window.location.href = '/profile'}
                 className="flex items-center space-x-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
               >
