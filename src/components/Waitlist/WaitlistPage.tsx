@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Users, Mail, Building2, Calendar, TrendingUp, Download, Search, Filter } from 'lucide-react';
+import { Users, Mail, Building2, Calendar, TrendingUp, Download, Search, Filter, Sparkles, User, LogOut, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface WaitlistEntry {
@@ -16,7 +16,7 @@ export const WaitlistPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCompany, setFilterCompany] = useState<string>('all');
-  const { user } = useAuth();
+  const { user, profile, signOut } = useAuth();
 
   useEffect(() => {
     fetchWaitlistEntries();
@@ -115,6 +115,53 @@ export const WaitlistPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+      {/* Header */}
+      <header className="bg-white border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl flex items-center justify-center">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-slate-900">LuminIQ Dashboard</h1>
+                <p className="text-sm text-slate-600">Welcome back, {profile?.full_name}</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => window.location.href = '/dashboard'}
+                className="flex items-center space-x-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <LayoutDashboard className="w-5 h-5" />
+                <span>Dashboard</span>
+              </button>
+              <button
+                onClick={() => window.location.href = '/waitlist'}
+                className="flex items-center space-x-2 px-4 py-2 bg-slate-100 text-slate-900 rounded-lg transition-colors"
+              >
+                <Users className="w-5 h-5" />
+                <span>Waitlist</span>
+              </button>
+              <button
+                onClick={() => window.location.href = '/profile'}
+                className="flex items-center space-x-2 px-4 py-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <User className="w-5 h-5" />
+                <span>Profile</span>
+              </button>
+              <button
+                onClick={signOut}
+                className="flex items-center space-x-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              >
+                <LogOut className="w-5 h-5" />
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-900 mb-2">Waitlist Dashboard</h1>
