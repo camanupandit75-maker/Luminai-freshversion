@@ -195,7 +195,7 @@ export const WaitlistModal = ({ isOpen, onClose, onSuccess }: WaitlistModalProps
               What brings you to us?
             </label>
             <div className="relative">
-              <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
+              <MessageSquare className="absolute left-3 top-3.5 w-5 h-5 text-slate-400" />
               <textarea
                 id="reason"
                 name="reason"
