@@ -2,40 +2,49 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/Auth/ProtectedRoute';
 import { LoginPage } from './components/Auth/LoginPage';
+import { SignUp } from './components/Auth/SignUp';
+import { SignIn } from './components/Auth/SignIn';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { ProfilePage } from './components/Profile/ProfilePage';
 import { WaitlistLandingPage } from './components/Waitlist/WaitlistLandingPage';
 import App from './App';
 
 export const AppRoutes = () => {
-  return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<App />} />
-          <Route path="/waitlist" element={<WaitlistLandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          
-          {/* Protected Routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <ProfilePage />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </AuthProvider>
-    </Router>
-  );
+  try {
+    return (
+      <Router>
+        <AuthProvider>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<App />} />
+            <Route path="/waitlist" element={<WaitlistLandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            
+            {/* Protected Routes */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </AuthProvider>
+      </Router>
+    );
+  } catch (error) {
+    console.error('Error in AppRoutes:', error);
+    return <div>Error loading application. Check console for details.</div>;
+  }
 };

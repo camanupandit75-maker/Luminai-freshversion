@@ -69,12 +69,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         .from('profiles')
         .select('*')
         .eq('id', userId)
-        .single();
+        .maybeSingle();
 
-      if (error) throw error;
-      setProfile(data);
+      if (error && error.code !== 'PGRST116') {
+        console.error('Error fetching profile:', error);
+      }
+      setProfile(data || null);
     } catch (error) {
       console.error('Error fetching profile:', error);
+      setProfile(null);
     } finally {
       setLoading(false);
     }

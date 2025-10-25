@@ -95,7 +95,13 @@ const Navigation = () => {
                   Waitlist
                 </button>
                 <button 
-                  onClick={() => navigate('/login')}
+                  onClick={() => navigate('/signup')}
+                  className="px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
+                >
+                  Sign Up
+                </button>
+                <button 
+                  onClick={() => navigate('/signin')}
                   className="px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                 >
                   Sign In
@@ -162,7 +168,13 @@ const Navigation = () => {
                   Waitlist
                 </button>
                 <button 
-                  onClick={() => { navigate('/login'); setIsMobileMenuOpen(false); }}
+                  onClick={() => { navigate('/signup'); setIsMobileMenuOpen(false); }}
+                  className="block w-full py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
+                >
+                  Sign Up
+                </button>
+                <button 
+                  onClick={() => { navigate('/signin'); setIsMobileMenuOpen(false); }}
                   className="block w-full py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
                 >
                   Sign In
