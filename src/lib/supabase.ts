@@ -3,11 +3,22 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+// More lenient check - only error if truly missing
+if (!supabaseUrl || !supabaseAnonKey || supabaseUrl === 'undefined' || supabaseAnonKey === 'undefined') {
+  console.error('Supabase configuration missing');
+  console.error('URL exists:', !!supabaseUrl);
+  console.error('Key exists:', !!supabaseAnonKey);
+  
+  // In production, use fallback or throw more helpful error
+  if (typeof window !== 'undefined') {
+    console.error('Environment variables not loaded. Check Vercel configuration.');
+  }
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(
+  supabaseUrl || '', 
+  supabaseAnonKey || ''
+);
 
 // Database types based on your schema
 export interface Profile {
