@@ -13,12 +13,14 @@ window.addEventListener('unhandledrejection', (event) => {
   console.error('Unhandled promise rejection:', event.reason);
 });
 
-// Debug environment variables - FORCE DEPLOYMENT
-console.log('Environment check - DEPLOYMENT TEST:');
+// Debug environment variables - VERIFY VERCEL BUILD
+console.log('=== VERCEL BUILD DEBUG ===');
 console.log('VITE_SUPABASE_URL:', import.meta.env.VITE_SUPABASE_URL);
-console.log('VITE_SUPABASE_ANON_KEY:', import.meta.env.VITE_SUPABASE_ANON_KEY);
+console.log('VITE_SUPABASE_ANON_KEY:', import.meta.env.VITE_SUPABASE_ANON_KEY ? 'PRESENT' : 'MISSING');
 console.log('VITE_N8N_WEBHOOK_URL:', import.meta.env.VITE_N8N_WEBHOOK_URL);
+console.log('All env vars:', Object.keys(import.meta.env).filter(key => key.startsWith('VITE_')));
 console.log('Build timestamp:', new Date().toISOString());
+console.log('========================');
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
