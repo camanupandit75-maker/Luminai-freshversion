@@ -19,8 +19,11 @@ const ContactForm = () => {
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
       const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
       
-      if (!supabaseUrl || !supabaseAnonKey) {
-        throw new Error('Supabase configuration not available');
+      if (!supabaseUrl || !supabaseAnonKey || supabaseUrl === 'undefined' || supabaseAnonKey === 'undefined') {
+        console.error('Supabase configuration missing in ContactForm');
+        setErrorMessage('Contact form is temporarily unavailable. Please try again later.');
+        setStatus('error');
+        return;
       }
       
       const apiUrl = `${supabaseUrl}/functions/v1/send-contact-email`;
