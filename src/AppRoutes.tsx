@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import { ProtectedRoute } from './components/Auth/ProtectedRoute';
-import { LoginPage } from './components/Auth/LoginPage';
-import { SignUp } from './components/Auth/SignUp';
-import { SignIn } from './components/Auth/SignIn';
-import { Dashboard } from './components/Dashboard/Dashboard';
+import { ProtectedRoute } from './components/Auth/ProtectedRoute.tsx';
+import { LoginPage } from './components/Auth/LoginPage.tsx';
+import { SignUp } from './components/Auth/SignUp.jsx';
+import { SignIn } from './components/Auth/SignIn.jsx';
+import { Dashboard } from './components/Dashboard/Dashboard.tsx';
 import { ProfilePage } from './components/Profile/ProfilePage';
 import { WaitlistLandingPage } from './components/Waitlist/WaitlistLandingPage';
 import App from './App';
