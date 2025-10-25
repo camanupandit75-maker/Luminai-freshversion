@@ -35,13 +35,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('AuthContext: Initializing...');
+    
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('AuthContext: Initial session:', session);
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
+        console.log('AuthContext: User found, fetching profile...');
         fetchProfile(session.user.id);
       } else {
+        console.log('AuthContext: No user, setting loading to false');
         setLoading(false);
       }
     });
@@ -49,12 +54,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('AuthContext: Auth state change:', event, session);
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
+        console.log('AuthContext: User found in state change, fetching profile...');
         fetchProfile(session.user.id);
       } else {
+        console.log('AuthContext: No user in state change, clearing profile');
         setProfile(null);
         setLoading(false);
       }
@@ -64,12 +72,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const fetchProfile = async (userId: string) => {
+    console.log('AuthContext: Fetching profile for user:', userId);
     try {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', userId)
         .maybeSingle();
+
+      console.log('AuthContext: Profile fetch result:', { data, error });
 
       if (error && error.code !== 'PGRST116') {
         console.error('Error fetching profile:', error);
@@ -79,6 +90,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.error('Error fetching profile:', error);
       setProfile(null);
     } finally {
+      console.log('AuthContext: Setting loading to false');
       setLoading(false);
     }
   };
