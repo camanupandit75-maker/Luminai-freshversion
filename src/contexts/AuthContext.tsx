@@ -154,8 +154,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const signOut = async () => {
+    console.log('AuthContext: Signing out...');
     await supabase.auth.signOut();
     setProfile(null);
+    console.log('AuthContext: Sign out complete');
   };
 
   const updateProfile = async (updates: Partial<Profile>) => {

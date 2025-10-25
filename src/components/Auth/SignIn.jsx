@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, ArrowRight, Sparkles, Chrome, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Sparkles, Chrome, Eye, EyeOff, Loader } from 'lucide-react';
 
 export const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +11,6 @@ export const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,11 +19,25 @@ export const SignIn = () => {
     setLoading(true);
 
     try {
-      const { error } = await signIn(formData.email, formData.password);
-      if (error) throw error;
-      navigate('/dashboard');
+      // Sign in with Supabase directly
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password
+      });
+
+      if (signInError) throw signInError;
+
+      if (data?.user) {
+        console.log('Sign in successful, saving session and redirecting...');
+        // Save the user session
+        await supabase.auth.setSession(data.session);
+        // Use replace to avoid back button issues
+        window.location.replace('/dashboard');
+      }
+
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      console.error('Sign in error:', err);
+      setError(err.message || 'Invalid email or password');
     } finally {
       setLoading(false);
     }
@@ -33,11 +46,19 @@ export const SignIn = () => {
   const handleGoogleSignIn = async () => {
     setError('');
     setLoading(true);
+    
     try {
-      const { error } = await signInWithGoogle();
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`
+        }
+      });
+      
       if (error) throw error;
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      console.error('Google sign in error:', err);
+      setError(err.message || 'Failed to sign in with Google');
       setLoading(false);
     }
   };
@@ -72,8 +93,8 @@ export const SignIn = () => {
         {/* Sign In Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
-              {error}
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm flex items-start gap-2">
+              <span>{error}</span>
             </div>
           )}
 
@@ -92,6 +113,7 @@ export const SignIn = () => {
                   className="w-full pl-11 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="you@example.com"
                   required
+                  disabled={loading}
                 />
               </div>
             </div>
@@ -110,11 +132,13 @@ export const SignIn = () => {
                   className="w-full pl-11 pr-12 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="••••••••"
                   required
+                  disabled={loading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  disabled={loading}
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -135,7 +159,7 @@ export const SignIn = () => {
               </div>
               <div className="text-sm">
                 <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                  Forgot your password?
+                  Forgot password?
                 </a>
               </div>
             </div>
@@ -145,8 +169,17 @@ export const SignIn = () => {
               disabled={loading}
               className="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span>{loading ? 'Signing In...' : 'Sign In'}</span>
-              <ArrowRight className="w-5 h-5" />
+              {loading ? (
+                <>
+                  <Loader className="w-5 h-5 animate-spin" />
+                  <span>Signing In...</span>
+                </>
+              ) : (
+                <>
+                  <span>Sign In</span>
+                  <ArrowRight className="w-5 h-5" />
+                </>
+              )}
             </button>
           </form>
 
@@ -198,3 +231,4 @@ export const SignIn = () => {
   );
 };
 
+export default SignIn;

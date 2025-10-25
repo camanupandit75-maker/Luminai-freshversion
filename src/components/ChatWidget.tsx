@@ -1,8 +1,42 @@
 import { useState, useEffect } from 'react';
 import { MessageCircle, X, Send, Sparkles, Zap, Lightbulb, Star, TrendingUp } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [inputMessage, setInputMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  // Demo messages for unauthenticated users
+  const demoMessages = [
+    {
+      type: 'bot',
+      text: "Hi! I'm LuminIQ. I can help you analyze your team's data and conversations!",
+      timestamp: new Date()
+    },
+    {
+      type: 'bot',
+      text: "I can extract insights from Slack, Telegram, and other platforms. Want to see how?",
+      timestamp: new Date()
+    },
+    {
+      type: 'bot',
+      text: "Sign in to start chatting with me and unlock the full power of AI-driven insights!",
+      timestamp: new Date()
+    }
+  ];
+
+  // Authenticated messages
+  const [messages, setMessages] = useState([
+    {
+      type: 'bot',
+      text: "Hi! I'm LuminIQ. Ask me anything about your data and insights!",
+      timestamp: new Date()
+    }
+  ]);
 
   // Listen for external trigger to open chat
   useEffect(() => {
@@ -13,40 +47,109 @@ const ChatWidget = () => {
     window.addEventListener('openChat', handleOpenChat);
     return () => window.removeEventListener('openChat', handleOpenChat);
   }, []);
-  const [currentStep, setCurrentStep] = useState(0);
 
-  const conversation = [
-    {
-      type: 'bot',
-      text: "Hi! I'm LuminIQ. Ask me anything about how I can help your team!",
-    },
-    {
-      type: 'user',
-      text: 'How does LuminIQ integrate with our existing tools?',
-    },
-    {
-      type: 'bot',
-      text: "Great question! LuminIQ integrates seamlessly with Slack and Telegram. Simply add the bot to your workspace, and it starts learning from your team's conversations immediately. No complex setup required!",
-    },
-    {
-      type: 'user',
-      text: 'Is our data secure?',
-    },
-    {
-      type: 'bot',
-      text: 'Absolutely! We use enterprise-grade encryption (AES-256), never train models on your data, and are SOC 2 compliant. Your knowledge base stays completely private to your team.',
-    },
-  ];
+  // Get user and profile data
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user);
+        setIsAuthenticated(true);
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single();
+        setProfile(profileData);
+      } else {
+        setIsAuthenticated(false);
+      }
+    };
+    getUser();
+  }, []);
 
-  const handleSendMessage = () => {
-    if (currentStep < conversation.length - 1) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      setCurrentStep(0);
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim() || isLoading) return;
+
+    const userMessage = {
+      type: 'user',
+      text: inputMessage,
+      timestamp: new Date()
+    };
+
+    // Add user message to appropriate messages array
+    if (isAuthenticated) {
+      setMessages(prev => [...prev, userMessage]);
+    }
+    setInputMessage('');
+    setIsLoading(true);
+
+    if (!isAuthenticated) {
+      // Demo mode - show sign in message
+      setTimeout(() => {
+        const signInMessage = {
+          type: 'bot',
+          text: 'Please sign in to use AI chat! I can help you analyze your team\'s data once you\'re authenticated.',
+          timestamp: new Date()
+        };
+        setIsLoading(false);
+      }, 1000);
+      return;
+    }
+
+    // Authenticated mode - use N8N webhook
+    try {
+      const webhookData = {
+        message: inputMessage,
+        organization_id: profile?.organization_id,
+        user_id: user?.id
+      };
+      
+      console.log('Sending to N8N:', {
+        url: import.meta.env.VITE_N8N_WEBHOOK_URL,
+        data: webhookData
+      });
+      
+      const response = await fetch(import.meta.env.VITE_N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      const botMessage = {
+        type: 'bot',
+        text: data.response || data.message || 'Sorry, I couldn\'t process your request.',
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage = {
+        type: 'bot',
+        text: 'Sorry, I encountered an error. Please try again.',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const displayedMessages = conversation.slice(0, currentStep + 1);
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
 
   return (
     <>
@@ -124,7 +227,7 @@ const ChatWidget = () => {
               <TrendingUp className="w-5 h-5 text-blue-400" />
             </div>
 
-            {displayedMessages.map((message, index) => (
+            {(isAuthenticated ? messages : demoMessages).map((message, index) => (
               <div
                 key={index}
                 className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-slide-up relative z-10`}
@@ -142,31 +245,60 @@ const ChatWidget = () => {
                   }`}
                 >
                   <p className="text-sm leading-relaxed">{message.text}</p>
+                  <p className="text-xs opacity-60 mt-1">
+                    {message.timestamp.toLocaleTimeString()}
+                  </p>
                 </div>
               </div>
             ))}
+            
+            {isLoading && (
+              <div className="flex justify-start animate-slide-up relative z-10">
+                <div className="bg-white text-slate-800 border border-blue-100 shadow-sm rounded-2xl px-5 py-3.5">
+                  <div className="flex items-center space-x-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+                    <p className="text-sm">
+                      {isAuthenticated ? 'LuminIQ is thinking...' : 'Please wait...'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {!isAuthenticated && (
+              <div className="flex justify-center animate-slide-up relative z-10 mt-4">
+                <button
+                  onClick={() => window.location.href = '/signin'}
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg"
+                >
+                  Sign In to Chat
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="p-5 bg-gradient-to-r from-slate-50 to-blue-50/30 border-t border-[#E2E8F0] relative overflow-hidden">
             {/* Footer decoration */}
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-blue-400/5 to-cyan-400/5 rounded-full blur-xl"></div>
 
-            {currentStep < conversation.length - 1 ? (
+            <div className="flex space-x-2 relative z-10">
+              <input
+                type="text"
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder={isAuthenticated ? "Ask LuminIQ anything..." : "Try typing a message..."}
+                className="flex-1 px-4 py-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                disabled={isLoading}
+              />
               <button
                 onClick={handleSendMessage}
-                className="w-full flex items-center justify-center space-x-2 px-5 py-3.5 bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-white rounded-xl font-semibold transition-all duration-200 shadow-lg shadow-slate-900/20 relative z-10 group"
+                disabled={!inputMessage.trim() || isLoading}
+                className="px-4 py-3 bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl font-semibold transition-all duration-200 shadow-lg shadow-slate-900/20 group"
               >
                 <Send className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                <span>Continue Demo</span>
               </button>
-            ) : (
-              <button
-                onClick={() => setCurrentStep(0)}
-                className="w-full px-5 py-3.5 bg-white border-2 border-blue-200 hover:border-blue-300 hover:bg-blue-50/50 text-slate-900 rounded-xl font-semibold transition-all duration-200 relative z-10"
-              >
-                Restart Demo
-              </button>
-            )}
+            </div>
           </div>
           </div>
         </div>

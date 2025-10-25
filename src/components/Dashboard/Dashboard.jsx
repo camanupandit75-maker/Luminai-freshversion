@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 import { supabase } from '../../lib/supabase';
+import { useNavigate } from 'react-router-dom';
+import ChatWidget from '../ChatWidget';
 import { 
   Upload, 
   Database, 
@@ -20,7 +21,11 @@ import {
 } from 'lucide-react';
 
 export const Dashboard = () => {
-  const { user, profile, signOut } = useAuth();
+  console.log('Dashboard: Component rendering');
+  console.log('N8N Webhook URL:', import.meta.env.VITE_N8N_WEBHOOK_URL);
+  
+  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [knowledgeItems, setKnowledgeItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,30 +35,101 @@ export const Dashboard = () => {
     knowledgeItems: 0,
     creditsUsed: 0,
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('Dashboard: useEffect for user/profile triggered');
+    // Get current user and profile
+    const getUser = async () => {
+      try {
+        console.log('Dashboard: Getting user from Supabase...');
+        const { data: { user }, error } = await supabase.auth.getUser();
+        console.log('Dashboard: User result:', user);
+        
+        if (error) {
+          console.error('Dashboard: Auth error:', error);
+          navigate('/signin');
+          return;
+        }
+        
+        if (user) {
+          console.log('Dashboard: User found, setting user state');
+          setUser(user);
+          
+          // Fetch profile
+          console.log('Dashboard: Fetching profile...');
+          const { data: profileData, error: profileError } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .single();
+            
+          if (profileError) {
+            console.error('Dashboard: Profile fetch error:', profileError);
+          } else {
+            console.log('Dashboard: Profile fetched:', profileData);
+            setProfile(profileData);
+          }
+        } else {
+          console.log('Dashboard: No user found, redirecting to signin');
+          navigate('/signin');
+        }
+      } catch (error) {
+        console.error('Dashboard: Unexpected error in getUser:', error);
+        navigate('/signin');
+      }
+    };
+    getUser();
+  }, [navigate]);
+
+  useEffect(() => {
+    console.log('Dashboard: useEffect for fetchDashboardData triggered, user:', user);
     if (user) {
+      console.log('Dashboard: User exists, fetching dashboard data...');
       fetchDashboardData();
+    } else {
+      console.log('Dashboard: No user, skipping dashboard data fetch');
     }
   }, [user]);
 
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
+
   const fetchDashboardData = async () => {
     try {
+      console.log('Dashboard: Starting fetchDashboardData for user:', user?.id);
+      
       // Fetch user's ingestion jobs
-      const { data: jobsData } = await supabase
+      console.log('Dashboard: Fetching ingestion jobs...');
+      const { data: jobsData, error: jobsError } = await supabase
         .from('ingestion_jobs')
         .select('*')
         .eq('user_id', user?.id)
         .order('created_at', { ascending: false })
         .limit(5);
 
+      if (jobsError) {
+        console.error('Dashboard: Jobs fetch error:', jobsError);
+      } else {
+        console.log('Dashboard: Jobs fetched:', jobsData);
+      }
+
       // Fetch user's knowledge items
-      const { data: knowledgeData } = await supabase
+      console.log('Dashboard: Fetching knowledge items...');
+      const { data: knowledgeData, error: knowledgeError } = await supabase
         .from('knowledge_items')
         .select('*')
         .eq('created_by', user?.id)
         .order('created_at', { ascending: false })
         .limit(5);
+
+      if (knowledgeError) {
+        console.error('Dashboard: Knowledge items fetch error:', knowledgeError);
+      } else {
+        console.log('Dashboard: Knowledge items fetched:', knowledgeData);
+      }
 
       setJobs(jobsData || []);
       setKnowledgeItems(knowledgeData || []);
@@ -63,6 +139,8 @@ export const Dashboard = () => {
       const completedJobs = jobsData?.filter((j) => j.status === 'completed').length || 0;
       const creditsUsed = (profile?.max_monthly_uploads || 10) - (profile?.credits_remaining || 100);
 
+      console.log('Dashboard: Stats calculated:', { totalJobs, completedJobs, knowledgeItems: knowledgeData?.length || 0, creditsUsed });
+
       setStats({
         totalJobs,
         completedJobs,
@@ -70,8 +148,9 @@ export const Dashboard = () => {
         creditsUsed,
       });
     } catch (error) {
-      console.error('Error fetching dashboard data:', error);
+      console.error('Dashboard: Error fetching dashboard data:', error);
     } finally {
+      console.log('Dashboard: Setting loading to false');
       setLoading(false);
     }
   };
@@ -207,7 +286,10 @@ export const Dashboard = () => {
             <p className="text-sm text-slate-600">Start a new ingestion job</p>
           </button>
 
-          <button className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow text-left">
+          <button 
+            onClick={() => window.dispatchEvent(new CustomEvent('openChat'))}
+            className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow text-left"
+          >
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <MessageCircle className="w-5 h-5 text-green-600" />
@@ -332,7 +414,7 @@ export const Dashboard = () => {
         <div className="mt-8 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold mb-2">Your Plan: {profile?.tier.toUpperCase()}</h3>
+              <h3 className="text-lg font-semibold mb-2">Your Plan: {profile?.tier?.toUpperCase() || 'FREE'}</h3>
               <p className="text-blue-100">
                 {profile?.credits_remaining} credits remaining • {profile?.max_monthly_uploads} uploads per month
               </p>
@@ -343,6 +425,9 @@ export const Dashboard = () => {
           </div>
         </div>
       </main>
+      
+      {/* Chat Widget */}
+      <ChatWidget />
     </div>
   );
 };

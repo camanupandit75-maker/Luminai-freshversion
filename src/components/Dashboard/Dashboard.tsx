@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 
 export const Dashboard = () => {
+  console.log('Dashboard component rendering...');
   const { user, profile, signOut } = useAuth();
   const [jobs, setJobs] = useState<IngestionJob[]>([]);
   const [knowledgeItems, setKnowledgeItems] = useState<KnowledgeItem[]>([]);
@@ -98,6 +99,8 @@ export const Dashboard = () => {
     }
   };
 
+  console.log('Dashboard render - loading:', loading, 'user:', user?.id, 'profile:', profile?.full_name);
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -130,7 +133,10 @@ export const Dashboard = () => {
                 <span>Profile</span>
               </button>
               <button
-                onClick={signOut}
+                onClick={async () => {
+                  await signOut();
+                  window.location.href = '/';
+                }}
                 className="flex items-center space-x-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
               >
                 <LogOut className="w-5 h-5" />

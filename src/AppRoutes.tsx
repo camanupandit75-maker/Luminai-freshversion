@@ -25,11 +25,7 @@ export const AppRoutes = () => {
             {/* Protected Routes */}
             <Route
               path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
+              element={<Dashboard />}
             />
             <Route
               path="/profile"
