@@ -13,7 +13,8 @@ window.addEventListener('unhandledrejection', (event) => {
   console.error('Unhandled promise rejection:', event.reason);
 });
 
-// Debug environment variables - VERIFY VERCEL BUILD
+// FORCE DEPLOYMENT - Vercel seems to be stuck on old commit
+console.log('🚀 FORCING NEW DEPLOYMENT - COMMIT:', 'c0f750c');
 console.log('=== VERCEL BUILD DEBUG ===');
 console.log('VITE_SUPABASE_URL:', import.meta.env.VITE_SUPABASE_URL);
 console.log('VITE_SUPABASE_ANON_KEY:', import.meta.env.VITE_SUPABASE_ANON_KEY ? 'PRESENT' : 'MISSING');
