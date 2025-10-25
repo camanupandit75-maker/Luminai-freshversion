@@ -8,6 +8,7 @@ const ChatWidget = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
+  const [organization, setOrganization] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
   // Demo messages for unauthenticated users
@@ -48,19 +49,31 @@ const ChatWidget = () => {
     return () => window.removeEventListener('openChat', handleOpenChat);
   }, []);
 
-  // Get user and profile data
+  // Get user, profile, and organization data
   useEffect(() => {
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         setUser(user);
         setIsAuthenticated(true);
+        
+        // Fetch profile data
         const { data: profileData } = await supabase
           .from('profiles')
           .select('*')
           .eq('id', user.id)
           .single();
         setProfile(profileData);
+        
+        // Fetch organization data if profile exists
+        if (profileData?.organization_id) {
+          const { data: orgData } = await supabase
+            .from('organizations')
+            .select('*')
+            .eq('id', profileData.organization_id)
+            .single();
+          setOrganization(orgData);
+        }
       } else {
         setIsAuthenticated(false);
       }
@@ -101,14 +114,25 @@ const ChatWidget = () => {
     try {
       const webhookData = {
         message: inputMessage,
+        userEmail: user?.email || profile?.email,
         organization_id: profile?.organization_id,
-        user_id: user?.id
+        organization_code: organization?.slug,
+        user_id: user?.id,
+        user_name: profile?.full_name
       };
       
       console.log('Sending to N8N:', {
         url: import.meta.env.VITE_N8N_WEBHOOK_URL,
         data: webhookData
       });
+      
+      // Check if webhook URL is configured
+      if (!import.meta.env.VITE_N8N_WEBHOOK_URL) {
+        throw new Error('N8N webhook URL not configured');
+      }
+      
+      console.log('Webhook URL:', import.meta.env.VITE_N8N_WEBHOOK_URL);
+      console.log('Webhook URL type:', typeof import.meta.env.VITE_N8N_WEBHOOK_URL);
       
       const response = await fetch(import.meta.env.VITE_N8N_WEBHOOK_URL, {
         method: 'POST',
@@ -118,15 +142,37 @@ const ChatWidget = () => {
         body: JSON.stringify(webhookData)
       });
 
+      console.log('N8N Response status:', response.status);
+      console.log('N8N Response headers:', response.headers);
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error('N8N Error response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
       }
 
-      const data = await response.json();
+      // Check if response has content
+      const responseText = await response.text();
+      console.log('N8N Raw response:', responseText);
+      
+      let data;
+      if (responseText.trim()) {
+        try {
+          data = JSON.parse(responseText);
+          console.log('N8N Parsed data:', data);
+        } catch (parseError) {
+          console.error('JSON Parse Error:', parseError);
+          console.error('Raw response that failed to parse:', responseText);
+          throw new Error(`Invalid JSON response: ${responseText}`);
+        }
+      } else {
+        console.log('Empty response from N8N, using default response');
+        data = { response: 'I received your message but got an empty response from the server.' };
+      }
       
       const botMessage = {
         type: 'bot',
-        text: data.response || data.message || 'Sorry, I couldn\'t process your request.',
+        text: data.response || data.message || data.text || 'Sorry, I couldn\'t process your request.',
         timestamp: new Date()
       };
 
@@ -135,7 +181,7 @@ const ChatWidget = () => {
       console.error('Error sending message:', error);
       const errorMessage = {
         type: 'bot',
-        text: 'Sorry, I encountered an error. Please try again.',
+        text: `Sorry, I encountered an error: ${error.message}. Please try again.`,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMessage]);
