@@ -51,7 +51,7 @@ export const SignIn = () => {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${import.meta.env.VITE_SITE_URL || window.location.origin}/dashboard`
+          redirectTo: `${import.meta.env.VITE_SITE_URL || window.location.origin}/auth/callback`
         }
       });
       
