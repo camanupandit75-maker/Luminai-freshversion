@@ -18,14 +18,6 @@ console.error('Full URL:', window.location.href);
 
 const router = createHashRouter([
   {
-    path: "/",
-    element: (
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    ),
-  },
-  {
     path: "waitlist",
     element: (
       <AuthProvider>
@@ -80,6 +72,14 @@ const router = createHashRouter([
         <ProtectedRoute>
           <ProfilePage />
         </ProtectedRoute>
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "/",
+    element: (
+      <AuthProvider>
+        <App />
       </AuthProvider>
     ),
   },
