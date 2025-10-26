@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/Auth/ProtectedRoute.tsx';
 import { LoginPage } from './components/Auth/LoginPage.tsx';
@@ -24,7 +24,7 @@ const RouteDebugger = () => {
 export const AppRoutes = () => {
   try {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <RouteDebugger />
         <AuthProvider>
           <Routes>
@@ -45,7 +45,7 @@ export const AppRoutes = () => {
             <Route path="/" element={<App />} />
           </Routes>
         </AuthProvider>
-      </HashRouter>
+      </BrowserRouter>
     );
   } catch (error) {
     console.error('Error in AppRoutes:', error);
