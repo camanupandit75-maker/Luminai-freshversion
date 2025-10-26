@@ -12,8 +12,10 @@ import App from './App';
 
 export const AppRoutes = () => {
   // Debug logging
-  console.log('Current hash:', window.location.hash);
-  console.log('Current pathname:', window.location.pathname);
+  console.error('=== ROUTE DEBUG ===');
+  console.error('Hash:', window.location.hash);
+  console.error('Pathname:', window.location.pathname);
+  console.error('Full URL:', window.location.href);
   
   try {
     return (
