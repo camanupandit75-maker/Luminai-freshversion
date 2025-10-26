@@ -16,13 +16,16 @@ export const AuthCallback = () => {
         if (error) {
           console.error('Auth callback error:', error);
           setError(error.message);
-          setTimeout(() => navigate('/signin'), 3000);
+          setTimeout(() => {
+            window.location.href = '/signin';
+          }, 3000);
           return;
         }
 
         if (data.session) {
           console.log('Auth callback successful, redirecting to dashboard');
-          navigate('/dashboard');
+          // Use window.location to force full page reload on Vercel
+          window.location.href = '/dashboard';
         } else {
           console.log('No session found, redirecting to signin');
           navigate('/signin');
@@ -30,7 +33,9 @@ export const AuthCallback = () => {
       } catch (err) {
         console.error('Unexpected error in auth callback:', err);
         setError('An unexpected error occurred');
-        setTimeout(() => navigate('/signin'), 3000);
+        setTimeout(() => {
+          window.location.href = '/signin';
+        }, 3000);
       }
     };
 
