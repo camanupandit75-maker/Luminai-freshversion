@@ -10,7 +10,13 @@ export const AuthCallback = () => {
   useEffect(() => {
     const handleAuthCallback = async () => {
       try {
-        // Handle the OAuth callback
+        console.log('Auth callback triggered, URL:', window.location.href);
+        
+        // Extract URL hash fragments that Supabase uses for OAuth
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        console.log('Hash params:', Object.fromEntries(hashParams.entries()));
+        
+        // Handle the OAuth callback - this will process the URL hash
         const { data, error } = await supabase.auth.getSession();
         
         if (error) {
@@ -23,7 +29,8 @@ export const AuthCallback = () => {
         }
 
         if (data.session) {
-          console.log('Auth callback successful, redirecting to dashboard');
+          console.log('Auth callback successful, session:', data.session);
+          console.log('Redirecting to dashboard...');
           // Use window.location to force full page reload on Vercel
           window.location.href = '/dashboard';
         } else {
