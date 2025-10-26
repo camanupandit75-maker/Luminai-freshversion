@@ -17,6 +17,7 @@ const RouteDebugger = () => {
   console.error('Hash:', window.location.hash);
   console.error('Location pathname:', location.pathname);
   console.error('Full URL:', window.location.href);
+  console.error('Build timestamp:', '2024-10-26-15:30:00-FORCE-DEPLOY');
   return null;
 };
 
