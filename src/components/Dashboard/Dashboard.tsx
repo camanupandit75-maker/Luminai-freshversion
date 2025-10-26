@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase, IngestionJob, KnowledgeItem } from '../../lib/supabase';
+import ChatWidget from '../ChatWidget';
 import {
   Upload,
   Database,
@@ -306,6 +307,9 @@ export const Dashboard = () => {
           </div>
         </div>
       </main>
+      
+      {/* Chat Widget */}
+      <ChatWidget />
     </div>
   );
 };
