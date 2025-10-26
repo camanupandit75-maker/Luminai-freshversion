@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/Auth/ProtectedRoute.tsx';
 import { LoginPage } from './components/Auth/LoginPage.tsx';
@@ -10,45 +10,84 @@ import { ProfilePage } from './components/Profile/ProfilePage';
 import { WaitlistLandingPage } from './components/Waitlist/WaitlistLandingPage';
 import App from './App';
 
+// Debug logging
+console.error('=== ROUTE DEBUG ===');
+console.error('Hash:', window.location.hash);
+console.error('Pathname:', window.location.pathname);
+console.error('Full URL:', window.location.href);
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: (
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "waitlist",
+    element: (
+      <AuthProvider>
+        <WaitlistLandingPage />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "login",
+    element: (
+      <AuthProvider>
+        <LoginPage />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "signup",
+    element: (
+      <AuthProvider>
+        <SignUp />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "signin",
+    element: (
+      <AuthProvider>
+        <SignIn />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "auth/callback",
+    element: (
+      <AuthProvider>
+        <AuthCallback />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "dashboard",
+    element: (
+      <AuthProvider>
+        <Dashboard />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "profile",
+    element: (
+      <AuthProvider>
+        <ProtectedRoute>
+          <ProfilePage />
+        </ProtectedRoute>
+      </AuthProvider>
+    ),
+  },
+]);
+
 export const AppRoutes = () => {
-  // Debug logging
-  console.error('=== ROUTE DEBUG ===');
-  console.error('Hash:', window.location.hash);
-  console.error('Pathname:', window.location.pathname);
-  console.error('Full URL:', window.location.href);
-  
   try {
-    return (
-      <Router>
-        <AuthProvider>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="waitlist" element={<WaitlistLandingPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="signin" element={<SignIn />} />
-            <Route path="auth/callback" element={<AuthCallback />} />
-            
-            {/* Protected Routes */}
-            <Route
-              path="dashboard"
-              element={<Dashboard />}
-            />
-            <Route
-              path="profile"
-              element={
-                <ProtectedRoute>
-                  <ProfilePage />
-                </ProtectedRoute>
-              }
-            />
-            
-            {/* Default/Home Route - Must be last */}
-            <Route path="/" element={<App />} />
-          </Routes>
-        </AuthProvider>
-      </Router>
-    );
+    return <RouterProvider router={router} />;
   } catch (error) {
     console.error('Error in AppRoutes:', error);
     return <div>Error loading application. Check console for details.</div>;
