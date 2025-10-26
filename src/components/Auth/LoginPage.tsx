@@ -26,7 +26,7 @@ export const LoginPage = () => {
       } else {
         const { error } = await signIn(email, password);
         if (error) throw error;
-        navigate('/dashboard');
+        navigate('dashboard');
       }
     } catch (err: any) {
       setError(err.message || 'An error occurred');

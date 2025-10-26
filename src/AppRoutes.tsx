@@ -18,19 +18,19 @@ export const AppRoutes = () => {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<App />} />
-            <Route path="/waitlist" element={<WaitlistLandingPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="waitlist" element={<WaitlistLandingPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="auth/callback" element={<AuthCallback />} />
             
             {/* Protected Routes */}
             <Route
-              path="/dashboard"
+              path="dashboard"
               element={<Dashboard />}
             />
             <Route
-              path="/profile"
+              path="profile"
               element={
                 <ProtectedRoute>
                   <ProfilePage />

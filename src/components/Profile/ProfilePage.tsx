@@ -36,7 +36,7 @@ export const ProfilePage = () => {
       <header className="bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('dashboard')}
             className="flex items-center space-x-2 text-slate-600 hover:text-slate-900 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
