@@ -67,13 +67,13 @@ const Navigation = () => {
             {user ? (
               <>
                 <button 
-                  onClick={() => navigate('dashboard')}
+                  onClick={() => navigate('/dashboard')}
                   className="ml-4 px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                 >
                   Dashboard
                 </button>
                 <button 
-                  onClick={() => navigate('profile')}
+                  onClick={() => navigate('/profile')}
                   className="flex items-center space-x-2 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                 >
                   <User className="w-4 h-4" />
@@ -89,19 +89,19 @@ const Navigation = () => {
             ) : (
               <>
                 <button 
-                  onClick={() => navigate('waitlist')}
+                  onClick={() => navigate('/waitlist')}
                   className="ml-4 px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                 >
                   Waitlist
                 </button>
                 <button 
-                  onClick={() => navigate('signup')}
+                  onClick={() => navigate('/signup')}
                   className="px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                 >
                   Sign Up
                 </button>
                 <button 
-                  onClick={() => navigate('signin')}
+                  onClick={() => navigate('/signin')}
                   className="px-6 py-2.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors duration-300"
                 >
                   Sign In
@@ -141,13 +141,13 @@ const Navigation = () => {
             {user ? (
               <>
                 <button 
-                  onClick={() => { navigate('dashboard'); setIsMobileMenuOpen(false); }}
+                  onClick={() => { navigate('/dashboard'); setIsMobileMenuOpen(false); }}
                   className="block w-full mt-2 py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
                 >
                   Dashboard
                 </button>
                 <button 
-                  onClick={() => { navigate('profile'); setIsMobileMenuOpen(false); }}
+                  onClick={() => { navigate('/profile'); setIsMobileMenuOpen(false); }}
                   className="block w-full py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
                 >
                   Profile
@@ -162,19 +162,19 @@ const Navigation = () => {
             ) : (
               <>
                 <button 
-                  onClick={() => { navigate('waitlist'); setIsMobileMenuOpen(false); }}
+                  onClick={() => { navigate('/waitlist'); setIsMobileMenuOpen(false); }}
                   className="block w-full mt-2 py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
                 >
                   Waitlist
                 </button>
                 <button 
-                  onClick={() => { navigate('signup'); setIsMobileMenuOpen(false); }}
+                  onClick={() => { navigate('/signup'); setIsMobileMenuOpen(false); }}
                   className="block w-full py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
                 >
                   Sign Up
                 </button>
                 <button 
-                  onClick={() => { navigate('signin'); setIsMobileMenuOpen(false); }}
+                  onClick={() => { navigate('/signin'); setIsMobileMenuOpen(false); }}
                   className="block w-full py-3 px-4 text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm font-semibold rounded-xl text-center"
                 >
                   Sign In
