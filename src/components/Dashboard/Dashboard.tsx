@@ -295,7 +295,7 @@ export const Dashboard = () => {
         <div className="mt-8 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold mb-2">Your Plan: {profile?.tier.toUpperCase()}</h3>
+              <h3 className="text-lg font-semibold mb-2">Your Plan: {profile?.tier?.toUpperCase() || 'FREE'}</h3>
               <p className="text-blue-100">
                 {profile?.credits_remaining} credits remaining • {profile?.max_monthly_uploads} uploads per month
               </p>
