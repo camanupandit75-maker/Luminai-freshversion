@@ -11,6 +11,10 @@ import { WaitlistLandingPage } from './components/Waitlist/WaitlistLandingPage';
 import App from './App';
 
 export const AppRoutes = () => {
+  // Debug logging
+  console.log('Current hash:', window.location.hash);
+  console.log('Current pathname:', window.location.pathname);
+  
   try {
     return (
       <Router>
