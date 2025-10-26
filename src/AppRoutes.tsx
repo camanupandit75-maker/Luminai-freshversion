@@ -17,7 +17,6 @@ export const AppRoutes = () => {
         <AuthProvider>
           <Routes>
             {/* Public Routes */}
-            <Route path="/" element={<App />} />
             <Route path="waitlist" element={<WaitlistLandingPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignUp />} />
@@ -37,6 +36,9 @@ export const AppRoutes = () => {
                 </ProtectedRoute>
               }
             />
+            
+            {/* Default/Home Route - Must be last */}
+            <Route path="/" element={<App />} />
           </Routes>
         </AuthProvider>
       </Router>
